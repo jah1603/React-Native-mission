@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
 import {ImageBackground} from 'react-native';
 
+import { Font } from 'expo';
 import t from 'tcomb-form-native';
 
 const Form = t.form.Form;
@@ -35,6 +36,7 @@ const formStyles = {
   }
 }
 
+
 const options = {
   fields: {
     location: {
@@ -50,9 +52,22 @@ const options = {
 };
 
 export default class App extends Component {
+
+  state = {
+   fontLoaded: false,
+ };
+
   handleSubmit = () => {
     const value = this._form.getValue();
     console.log('value: ', value);
+  }
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      'open-raleway': require('./assets/fonts/Raleway-Regular.ttf'),
+    });
+
+     this.setState({ fontLoaded: true });
   }
 
   render() {
@@ -63,11 +78,21 @@ export default class App extends Component {
                >
 
       <View style={styles.container}>
+      {
+   this.state.fontLoaded ? (
+     <Text style={{ fontFamily: 'open-raleway', fontSize: 40, textAlign: 'center', color: '#24b599', paddingBottom: '40%' }}>
+       Weather2Wed
+     </Text>
+   ) : null
+ }
+
         <Form
+          style={{alignItems: 'center', justifyContent: 'center', flex: 1, position: 'relative', top: '50%'}}
           ref={c => this._form = c}
           type={User}
           options={options}
         />
+
         <Button
           title="Check weather!"
           onPress={this.handleSubmit}
