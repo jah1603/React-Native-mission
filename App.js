@@ -20,7 +20,7 @@ const formStyles = {
   },
   controlLabel: {
     normal: {
-      color: 'blue',
+      color: '#24b599',
       fontSize: 18,
       marginBottom: 7,
       fontWeight: '600'
@@ -58,7 +58,7 @@ export default class App extends Component {
   render() {
     return (
       <ImageBackground
-               source={require('./assets/image.png')}
+               source={require('./assets/wedding_rain.jpg')}
                style={styles.backgroundStyle}
                >
 
@@ -71,13 +71,13 @@ export default class App extends Component {
         <Button
           title="Check weather!"
           onPress={this.handleSubmit}
+          color='#24b599'
         />
       </View>
     </ImageBackground>
     );
   }
 }
-
 
 const styles = StyleSheet.create({
   container: {
@@ -90,5 +90,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     position: 'absolute'
+  },
+  buttonStyle: {
+    color:  '#24b599'
   }
 });
