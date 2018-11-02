@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Button, TouchableOpacity, Image } from 'react-n
 import {ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
+import Modal from 'react-native-modal';
 
 import { Font } from 'expo';
 import t from 'tcomb-form-native';
@@ -64,7 +65,8 @@ export default class App extends Component {
 
   state = {
    fontLoaded: false,
-   dateSelected: 0
+   dateSelected: 0,
+   isModalVisible: false
  };
 
   handleSubmit = () => {
@@ -96,6 +98,9 @@ export default class App extends Component {
   getVal(val) {
         console.warn(val);
     }
+
+    _toggleModal = () =>
+      this.setState({ isModalVisible: !this.state.isModalVisible });
 
   render() {
     var self = this;
@@ -157,10 +162,19 @@ export default class App extends Component {
         <View style={styles.buttonContainer}>
         <TouchableOpacity
         style={styles.button}
-        onPress={()=>{alert(`😄${this.state.dateSelected}Weather data to be shown here Weather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown hereWeather data to be shown here`)}}
-        >
+        onPress={this._toggleModal}>
         <Image source={require('./assets/weather2wed_button.jpg')} style={{height: '60%', width: '52%'}}/>
         </TouchableOpacity>
+      </View>
+      <View>
+        <Modal isVisible={this.state.isModalVisible}>
+          <View style={{flex: 1, backgroundColor: 'white'}}>
+          <Text>Modal content here.</Text>
+          <TouchableOpacity onPress={this._toggleModal}>
+              <Text>Hide me!</Text>
+          </TouchableOpacity>
+          </View>
+        </Modal>
       </View>
       </View>
     </ImageBackground>

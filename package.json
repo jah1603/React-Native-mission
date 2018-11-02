@@ -15,6 +15,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-circle-slider": "^1.1.1",
     "react-native-datepicker": "^1.7.2",
+    "react-native-modal": "^6.5.0",
     "react-native-svg": "^8.0.8",
     "tcomb-form-native": "^0.6.20"
   }
