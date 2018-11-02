@@ -54,8 +54,10 @@ const options = {
 
 export default class App extends Component {
 
+
   state = {
    fontLoaded: false,
+   dateSelected: 0
  };
 
   handleSubmit = () => {
@@ -71,7 +73,12 @@ export default class App extends Component {
      this.setState({ fontLoaded: true });
   }
 
+  getVal(val) {
+        console.warn(val);
+    }
+
   render() {
+    var self = this;
     return (
       <ImageBackground
                source={require('./assets/wedding_rain.jpg')}
@@ -81,14 +88,17 @@ export default class App extends Component {
       <View style={styles.container}>
       {
    this.state.fontLoaded ? (
-     <Text style={{ fontFamily: 'open-raleway', fontSize: 40, textAlign: 'center', color: '#24b599', paddingBottom: '20%' }}>
+
+     <View>
+     <Text style={{ fontFamily: 'open-raleway', fontSize: 40, textAlign: 'center', fontWeight: 'bold', color: "#12D8FA", paddingBottom: '14%' }}>
        Weather2Wed
      </Text>
+     </View>
    ) : null
  }
         <View style={{paddingBottom: '10%'}}>
         <Form
-          style={{alignItems: 'center', justifyContent: 'center', flex: 1, position: 'relative', top: '50%'}}
+          style={{alignItems: 'center', justifyContent: 'center'}}
           ref={c => this._form = c}
           type={User}
           options={options}
@@ -96,10 +106,14 @@ export default class App extends Component {
         />
         </View>
 
-        <View style={{backgroundColor: 'pink', width: '100%', height: '50%', alignItems: 'center'}}>
-        <CircleSlider style={{position: 'relative', top: '10%'}}
+        <View style={{ width: '100%', height: '50%', alignItems: 'center'}}>
+        <Text style={{fontSize: 40 }}>
+        {`${this.state.dateSelected}`}
+        </Text>
+        <CircleSlider style={{position: 'relative', top: '10%', paddingTop: '100%'}}
 			arcDirection={'CW'}
             backgroundColor={"white"}
+            value={0}
             btnRadius={15}
             sliderRadius={110}
             sliderWidth={25}
@@ -107,9 +121,13 @@ export default class App extends Component {
             maxValue={360}
             onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
             onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
-            onValueChange={(value) => console.log(`Changed: ${value}`)}
+            onValueChange={val => this.setState({ dateSelected: val })}
+            onSlidingComplete={val => this.getVal(val)}
             endGradient={"#A6FFCB"}
             startGradient={"#12D8FA"}
+            showValue={'true'}
+            textColor={'black'}
+            textSize={20}
 		/>
     </View>
 
@@ -131,17 +149,16 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'space-between',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'stretch',
     marginTop: 50,
     padding: 20,
     backgroundColor: 'transparent'
   },
   buttonContainer: {
-    flex: 1,
-    backgroundColor: 'skyblue',
-    alignItems: 'center'
+    alignItems: 'center',
+    height: '25%'
   },
   backgroundStyle: {
     width: '100%',
