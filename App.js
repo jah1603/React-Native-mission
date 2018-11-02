@@ -4,6 +4,7 @@ import {ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
 import Modal from 'react-native-modal';
+import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 
 import { Font } from 'expo';
 import t from 'tcomb-form-native';
@@ -66,7 +67,18 @@ export default class App extends Component {
   state = {
    fontLoaded: false,
    dateSelected: 0,
-   isModalVisible: false
+   isModalVisible: false,
+   tableHead: ['Col 1', 'Col 2'],
+   tableData: [
+              ['1', '2'],
+              ['a', 'b'],
+              ['a', 'b'],
+              ['a', 'b'],
+              ['a', 'b'],
+              ['a', 'b'],
+              ['a', 'b'],
+              ['a', 'b']
+            ]
  };
 
   handleSubmit = () => {
@@ -172,14 +184,25 @@ export default class App extends Component {
         style={styles.modalContainer}
         >
           <View style={{flex: 1, backgroundColor: 'transparent'}}>
-          <Text>The weather on {this.convertSecondsToCalendarDate()} is...</Text>
+
+          <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
+          <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: Light rain starting in the evening.</Text>
+          </View>
+
+        <View>
+        <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
+          <Row data={this.state.tableHead} style={styles.tableHead} textStyle={styles.tableText}/>
+          <Rows data={this.state.tableData} textStyle={styles.tableText}/>
+        </Table>
+        </View>
+
           <TouchableOpacity onPress={this._toggleModal}>
             <Text>Hide me!</Text>
-
             <View>
             <Image source={require('./assets/darksky.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '70%'}}/>
             </View>
           </TouchableOpacity>
+
           </View>
         </Modal>
       </View>
@@ -220,5 +243,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
     backgroundColor: 'white'
-  }
+  },
+  tableContainer: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
+  tableHead: { height: 40, backgroundColor: '#24b599' },
+  tableText: { margin: 6 }
 });

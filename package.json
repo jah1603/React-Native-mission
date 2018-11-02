@@ -17,6 +17,7 @@
     "react-native-datepicker": "^1.7.2",
     "react-native-modal": "^6.5.0",
     "react-native-svg": "^8.0.8",
+    "react-native-table-component": "^1.1.8",
     "tcomb-form-native": "^0.6.20"
   }
 }
