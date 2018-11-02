@@ -167,11 +167,15 @@ export default class App extends Component {
         </TouchableOpacity>
       </View>
       <View>
-        <Modal isVisible={this.state.isModalVisible}>
-          <View style={{flex: 1, backgroundColor: 'white'}}>
-          <Text>Modal content here.</Text>
+        <Modal
+        isVisible={this.state.isModalVisible}
+        style={{ backgroundColor: 'silver'}}
+        >
+          <View style={{flex: 1, backgroundColor: 'transparent'}}>
+          <Text>The weather on {this.convertSecondsToCalendarDate()} is...</Text>
           <TouchableOpacity onPress={this._toggleModal}>
-              <Text>Hide me!</Text>
+            <Text>Hide me!</Text>
+            <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{height: '50%', width: '50%'}}/>
           </TouchableOpacity>
           </View>
         </Modal>
