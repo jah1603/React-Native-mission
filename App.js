@@ -22,8 +22,8 @@ const formStyles = {
   },
   controlLabel: {
     normal: {
-      color: '#24b599',
-      fontSize: 18,
+      color: 'transparent',
+      fontSize: 0,
       marginBottom: 7,
       fontWeight: '600'
     },
@@ -41,9 +41,12 @@ const formStyles = {
 const options = {
   fields: {
     location: {
-      auto: 'placeholders',
-      placeholderTextColor: 'blue',
+      placeholder: "Where are you getting married?",
+      placeholderTextColor: "#24b599",
       error: 'Please enter a place or postcode',
+      textAlign: 'center',
+      fontSize: 28,
+      fontWeight: 'bold',
       opacity: '50%'
     },
     date: {
@@ -96,7 +99,7 @@ export default class App extends Component {
     var self = this;
     return (
       <ImageBackground
-               source={require('./assets/wedding_rain.jpg')}
+               source={require('./assets/bride8.jpeg')}
                style={styles.backgroundStyle}
                >
 
@@ -105,7 +108,7 @@ export default class App extends Component {
    this.state.fontLoaded ? (
 
      <View>
-     <Text style={{ fontFamily: 'open-raleway', fontSize: 40, textAlign: 'center', fontWeight: 'bold', color: "#12D8FA", paddingBottom: '14%' }}>
+     <Text style={{ fontFamily: 'open-raleway', fontSize: 40, textAlign: 'center', fontWeight: 'bold', color: "#24b599", paddingBottom: '14%' }}>
        Weather2Wed
      </Text>
      </View>
@@ -113,11 +116,13 @@ export default class App extends Component {
  }
         <View style={{paddingBottom: '10%'}}>
         <Form
-          style={{alignItems: 'center', justifyContent: 'center'}}
+          style={{alignItems: 'center', justifyContent: 'center', textAlign: 'center', color: "#24b599"}}
           ref={c => this._form = c}
           type={User}
           options={options}
-          underlineColorAndroid="transparent"
+          color="#12D8FA"
+          textAlign="center"
+          underlineColorAndroid="rgba(0,0,0,0)"
         />
         </View>
 
@@ -141,7 +146,7 @@ export default class App extends Component {
             textColor={'black'}
             textSize={20}
 		/>
-    <Text style={{fontSize: 20, color: "#12D8FA"}}>
+    <Text style={{fontSize: 20, color: "#24b599"}}>
     {`${this.convertSecondsToCalendarDate()}`}
     </Text>
     </View>
