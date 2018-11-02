@@ -169,13 +169,16 @@ export default class App extends Component {
       <View>
         <Modal
         isVisible={this.state.isModalVisible}
-        style={{ backgroundColor: 'silver'}}
+        style={styles.modalContainer}
         >
           <View style={{flex: 1, backgroundColor: 'transparent'}}>
           <Text>The weather on {this.convertSecondsToCalendarDate()} is...</Text>
           <TouchableOpacity onPress={this._toggleModal}>
             <Text>Hide me!</Text>
-            <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{height: '50%', width: '50%'}}/>
+
+            <View>
+            <Image source={require('./assets/darksky.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '70%'}}/>
+            </View>
           </TouchableOpacity>
           </View>
         </Modal>
@@ -210,5 +213,12 @@ const styles = StyleSheet.create({
     top: '20%',
     height: '100%',
     width: '50%'
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    padding: 20,
+    backgroundColor: 'white'
   }
 });
