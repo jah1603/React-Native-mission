@@ -122,9 +122,6 @@ export default class App extends Component {
         </View>
 
         <View style={{ width: '100%', height: '50%', alignItems: 'center'}}>
-        <Text style={{fontSize: 40 }}>
-        {`${this.convertSecondsToCalendarDate()}`}
-        </Text>
         <CircleSlider style={{position: 'relative', top: '10%', paddingTop: '100%'}}
 			arcDirection={'CW'}
             backgroundColor={"white"}
@@ -144,6 +141,9 @@ export default class App extends Component {
             textColor={'black'}
             textSize={20}
 		/>
+    <Text style={{fontSize: 20, color: "#12D8FA"}}>
+    {`${this.convertSecondsToCalendarDate()}`}
+    </Text>
     </View>
 
         <View style={styles.buttonContainer}>
