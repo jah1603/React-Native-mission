@@ -42,7 +42,9 @@ const options = {
   fields: {
     location: {
       auto: 'placeholders',
-      error: 'Please enter a place or postcode'
+      placeholderTextColor: 'blue',
+      error: 'Please enter a place or postcode',
+      opacity: '50%'
     },
     date: {
       mode: 'date',
@@ -71,6 +73,19 @@ export default class App extends Component {
     });
 
      this.setState({ fontLoaded: true });
+  }
+
+  convertSecondsToCalendarDate(){
+    var fractionOfYear = this.state.dateSelected / 365;
+    var secondsInAYear = 31536000;
+    var seconds = fractionOfYear * secondsInAYear;
+
+    var dateToDisplay = new Date(seconds * 1000);
+    var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
+    var month = months[dateToDisplay.getMonth()];
+    var date = dateToDisplay.getDate();
+
+    return `${date} ${month}`;
   }
 
   getVal(val) {
@@ -108,7 +123,7 @@ export default class App extends Component {
 
         <View style={{ width: '100%', height: '50%', alignItems: 'center'}}>
         <Text style={{fontSize: 40 }}>
-        {`${this.state.dateSelected}`}
+        {`${this.convertSecondsToCalendarDate()}`}
         </Text>
         <CircleSlider style={{position: 'relative', top: '10%', paddingTop: '100%'}}
 			arcDirection={'CW'}
@@ -118,7 +133,7 @@ export default class App extends Component {
             sliderRadius={110}
             sliderWidth={25}
             startDegree={0}
-            maxValue={360}
+            maxValue={370.069444444}
             onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
             onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
             onValueChange={val => this.setState({ dateSelected: val })}
