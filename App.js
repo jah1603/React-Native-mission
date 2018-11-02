@@ -68,17 +68,6 @@ export default class App extends Component {
    fontLoaded: false,
    dateSelected: 0,
    isModalVisible: false,
-   tableHead: ['Col 1', 'Col 2'],
-   tableData: [
-              ['1', '2'],
-              ['a', 'b'],
-              ['a', 'b'],
-              ['a', 'b'],
-              ['a', 'b'],
-              ['a', 'b'],
-              ['a', 'b'],
-              ['a', 'b']
-            ]
  };
 
   handleSubmit = () => {
@@ -189,18 +178,22 @@ export default class App extends Component {
           <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: Light rain starting in the evening.</Text>
           </View>
 
-        <View>
-        <Table borderStyle={{borderWidth: 2, borderColor: '#c8e1ff'}}>
-          <Row data={this.state.tableHead} style={styles.tableHead} textStyle={styles.tableText}/>
-          <Rows data={this.state.tableData} textStyle={styles.tableText}/>
-        </Table>
+        <View style={styles.dataContainer}>
+
+        <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row', justifyContent: 'center'}}>
+        <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+        <Text> 12 degrees maximum </Text>
+        </View>
+        
         </View>
 
           <TouchableOpacity onPress={this._toggleModal}>
-            <Text>Hide me!</Text>
-            <View>
+          <View>
             <Image source={require('./assets/darksky.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '70%'}}/>
-            </View>
+          </View>
+          <View>
+            <Image source={require('./assets/cancel.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '40%'}}/>
+          </View>
           </TouchableOpacity>
 
           </View>
@@ -243,6 +236,13 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
     backgroundColor: 'white'
+  },
+  dataContainer: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    padding: 20,
+    backgroundColor: 'pink'
   },
   tableContainer: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   tableHead: { height: 40, backgroundColor: '#24b599' },
