@@ -178,23 +178,19 @@ export default class App extends Component {
           <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: Light rain starting in the evening.</Text>
           </View>
 
-        <View style={styles.dataContainer}>
-
-        <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row', justifyContent: 'center'}}>
+        <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row', padding: 40, justifyContent: 'center'}}>
         <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
         <Text> 12 degrees maximum </Text>
-        </View>
-        
         </View>
 
           <TouchableOpacity onPress={this._toggleModal}>
           <View>
             <Image source={require('./assets/darksky.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '70%'}}/>
           </View>
-          <View>
-            <Image source={require('./assets/cancel.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '40%'}}/>
-          </View>
           </TouchableOpacity>
+
+
+          
 
           </View>
         </Modal>
