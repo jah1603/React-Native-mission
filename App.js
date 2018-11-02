@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
-
+import CircleSlider from 'react-native-circle-slider';
 
 import { Font } from 'expo';
 import t from 'tcomb-form-native';
@@ -86,7 +86,7 @@ export default class App extends Component {
      </Text>
    ) : null
  }
-        <View style={{backgroundColor: 'steelblue', paddingBottom: '20%'}}>
+        <View style={{paddingBottom: '10%'}}>
         <Form
           style={{alignItems: 'center', justifyContent: 'center', flex: 1, position: 'relative', top: '50%'}}
           ref={c => this._form = c}
@@ -96,34 +96,22 @@ export default class App extends Component {
         />
         </View>
 
-
-        <View style={{backgroundColor: 'powderblue', alignItems: 'center'}}>
-          <DatePicker>
-        style={{width: 200}}
-        date={this.state.date}
-        mode="date"
-        androidMode="spinner"
-        placeholder="select date"
-        format="YYYY-MM-DD"
-        confirmBtnText="Confirm"
-        cancelBtnText="Cancel"
-        customStyles={{
-          dateIcon: {
-            position: 'absolute',
-            left: 0,
-            top: 4,
-            marginLeft: 0,
-            paddingBottom: '10%'
-          },
-          dateInput: {
-            marginLeft: 36
-          }
-          // ... You can check the source to find the other keys.
-        }}
-        onDateChange={(date) => {this.setState({date: date})}}
-      </DatePicker>
-      </View>
-
+        <View style={{backgroundColor: 'pink', width: '100%', height: '50%', alignItems: 'center'}}>
+        <CircleSlider style={{position: 'relative', top: '10%'}}
+			arcDirection={'CW'}
+            backgroundColor={"white"}
+            btnRadius={15}
+            sliderRadius={110}
+            sliderWidth={25}
+            startDegree={0}
+            maxValue={360}
+            onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
+            onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
+            onValueChange={(value) => console.log(`Changed: ${value}`)}
+            endGradient={"#A6FFCB"}
+            startGradient={"#12D8FA"}
+		/>
+    </View>
 
         <View style={styles.buttonContainer}>
         <TouchableOpacity
