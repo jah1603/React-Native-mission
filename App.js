@@ -9,9 +9,9 @@ import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-ta
 import { Font } from 'expo';
 import t from 'tcomb-form-native';
 
-const Weather = require('./models/Weather.js');
-const Venues = require('./models/Venues.js')
-const Coordinates = require('./models/Coordinates.js');
+// const Weather = require('./models/Weather.js');
+import { bindEvents } from './models/Helper.js';
+
 
 const Form = t.form.Form;
 
@@ -106,15 +106,14 @@ export default class App extends Component {
     }
 
   processSubmit(){
-    var date = this.state.dateSelected;
+    var date = 1541427789;
     var lat = 42.3601;
     var long = -71.0589;
-    location = `${lat}, ${long}`
+    var location = `${lat}, ${long}`
 
     console.log("HELLo");
 
-    Weather.getWeatherData(location, date);
-
+    Weather.bindEvents(location, date);
 
     this.setState({
       weather: Weather.state.data
