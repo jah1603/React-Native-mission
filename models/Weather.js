@@ -5,11 +5,11 @@ export default class Weather extends Component {
 
   state = {
     weatherDataLoaded: false,
-    date: null
+    data: null
   }
 
   getWeatherData(location, seconds){
-      const url = `http://localhost:8080/weather/${location}/${seconds}`
+      const url = `http://localhost:8083/weather/${location}/${seconds}`
 
       axios.get(url).then(response => {
         this.setState({
