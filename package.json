@@ -10,7 +10,10 @@
   },
   "dependencies": {
     "expo": "^30.0.1",
+    "express": "^4.16.4",
     "native-base": "^2.8.1",
+    "node-fetch": "^2.2.1",
+    "nodemon": "^1.18.5",
     "react": "16.3.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-circle-slider": "^1.1.1",

@@ -7,7 +7,7 @@ const four_square_secret_key = require('./four_square_secret_key.js');
 const GEO_KEY = require('./geo_key.js');
 
 
-var port = process.env.PORT || 8080;
+var port = process.env.PORT || 8083;
 
 app.use(express.static('client/public'))
 app.use(express.static('client/src'))
@@ -29,6 +29,7 @@ var allowCrossDomain = function(req, res, next) {
 app.use(allowCrossDomain);
 
 app.get('/', function(req, res){
+  console.log("RUNNING APP");
   res.sendFile('index.html');
 });
 
