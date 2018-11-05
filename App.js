@@ -10,7 +10,8 @@ import { Font } from 'expo';
 import t from 'tcomb-form-native';
 
 // const Weather = require('./models/Weather.js');
-import { bindEvents } from './models/Helper.js';
+import { getWeatherData } from './models/Helper.js';
+import { returnWeatherData } from './models/Helper.js';
 
 
 const Form = t.form.Form;
@@ -68,6 +69,13 @@ const options = {
 export default class App extends Component {
 
 
+  constructor(props) {
+  super(props);
+  this.processSubmit = this.processSubmit.bind(this);
+  this.toggleModal = this.toggleModal.bind(this);
+}
+
+
   state = {
    fontLoaded: false,
    dateSelected: 0,
@@ -111,21 +119,19 @@ export default class App extends Component {
     var long = -71.0589;
     var location = `${lat}, ${long}`
 
-    console.log("HELLo");
-
-    Weather.bindEvents(location, date);
+    getWeatherData(location, date);
 
     this.setState({
-      weather: Weather.state.data
-    }, _toggelModal())
+      weather: returnWeatherData()
+    }, function(){this.toggleModal()})
 
   }
 
-
-    _toggleModal = () => {
+    toggleModal(){
       this.setState({ isModalVisible: !this.state.isModalVisible });
-    }
 
+      console.log("WEATHER", this.state.weather);
+    }
 
   render() {
     var self = this;
@@ -199,15 +205,26 @@ export default class App extends Component {
           <View style={{flex: 1, backgroundColor: 'transparent'}}>
 
           <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
-          <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: Light rain starting in the evening.</Text>
+        {
+          this.state.weather ? (
+               <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: {this.state.weather.latitude}</Text>
+          ) :   <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: (Hardcoded) Light rain starting in the evening.</Text>
+        }
+
           </View>
 
         <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row', padding: 40, justifyContent: 'center'}}>
         <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-        <Text> 12 degrees maximum </Text>
+
+        {
+     this.state.weather ? (
+       <Text> {this.state.weather.latitude}</Text>
+
+     ) : <Text> </Text>
+   }
         </View>
 
-          <TouchableOpacity onPress={this._toggleModal}>
+          <TouchableOpacity onPress={this.toggleModal}>
           <View>
             <Image source={require('./assets/darksky.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '70%'}}/>
           </View>
