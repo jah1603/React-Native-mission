@@ -9,6 +9,10 @@ import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-ta
 import { Font } from 'expo';
 import t from 'tcomb-form-native';
 
+const Weather = require('./models/Weather.js');
+const Venues = require('./models/Venues.js')
+const Coordinates = require('./models/Coordinates.js');
+
 const Form = t.form.Form;
 
 const User = t.struct({
@@ -68,6 +72,7 @@ export default class App extends Component {
    fontLoaded: false,
    dateSelected: 0,
    isModalVisible: false,
+   weather: null
  };
 
   handleSubmit = () => {
@@ -100,8 +105,28 @@ export default class App extends Component {
         console.warn(val);
     }
 
-    _toggleModal = () =>
+  processSubmit(){
+    var date = this.state.dateSelected;
+    var lat = 42.3601;
+    var long = -71.0589;
+    location = `${lat}, ${long}`
+
+    console.log("HELLo");
+
+    Weather.getWeatherData(location, date);
+
+
+    this.setState({
+      weather: Weather.state.data
+    }, _toggelModal())
+
+  }
+
+
+    _toggleModal = () => {
       this.setState({ isModalVisible: !this.state.isModalVisible });
+    }
+
 
   render() {
     var self = this;
@@ -163,7 +188,7 @@ export default class App extends Component {
         <View style={styles.buttonContainer}>
         <TouchableOpacity
         style={styles.button}
-        onPress={this._toggleModal}>
+        onPress={this.processSubmit}>
         <Image source={require('./assets/weather2wed_button.jpg')} style={{height: '60%', width: '52%'}}/>
         </TouchableOpacity>
       </View>
