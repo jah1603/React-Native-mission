@@ -6,18 +6,20 @@ const Helper = function (){
   data: null;
 }
 
-Helper.prototype.returnWeatherData = function(){
-  return this.data;
-}
+// returnWeatherData = function(){
+//
+//   console.log("DATA", this.data);
+//   return this.data;
+//
+// }
 
-Helper.prototype.getWeatherData = function(location, seconds){
+getWeatherData = function(location, seconds){
     const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
-
+    console.log("RETRIEVING WEAther");
     axios.get(url).then(response => {
-      this.setState({
-        weatherDataLoaded: true,
-        data: response.data,
-      })
+      this.data = response.data;
+      console.log("data", this.data);
+      return this.data
 }).catch(function(error){
   console.log(error);
   console.log("Error fetching weather data.");
@@ -48,3 +50,4 @@ Helper.prototype.getWeatherData = function(location, seconds){
 
 export function getWeatherData(){}
 export function returnWeatherData(){}
+export default Helper

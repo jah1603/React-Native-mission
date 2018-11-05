@@ -12,6 +12,9 @@ import t from 'tcomb-form-native';
 // const Weather = require('./models/Weather.js');
 import { getWeatherData } from './models/Helper.js';
 import { returnWeatherData } from './models/Helper.js';
+import { Helper } from './models/Helper.js';
+
+import axios from 'axios';
 
 
 const Form = t.form.Form;
@@ -73,6 +76,7 @@ export default class App extends Component {
   super(props);
   this.processSubmit = this.processSubmit.bind(this);
   this.toggleModal = this.toggleModal.bind(this);
+  this.getWeatherData = this.getWeatherData.bind(this);
 }
 
 
@@ -119,18 +123,40 @@ export default class App extends Component {
     var long = -71.0589;
     var location = `${lat}, ${long}`
 
-    getWeatherData(location, date);
+    console.log("about to call weather data method");
 
-    this.setState({
-      weather: returnWeatherData()
-    }, function(){this.toggleModal()})
+    this.getWeatherData(location, date);
 
   }
 
     toggleModal(){
-      this.setState({ isModalVisible: !this.state.isModalVisible });
+
 
       console.log("WEATHER", this.state.weather);
+      this.setState({ isModalVisible: !this.state.isModalVisible });
+
+    }
+
+
+    returnWeatherData(){
+      return weather_data;
+    }
+
+
+    getWeatherData = function(location, seconds){
+        const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
+        console.log("RETRIEVING WEAther");
+        axios.get(url).then(response => {
+
+          console.log("data", this.data);
+          this.setState({
+            weather: response.data
+          }, function(){this.toggleModal()})
+
+    }).catch(function(error){
+      console.log(error);
+      console.log("Error fetching weather data.");
+    })
     }
 
   render() {
@@ -207,7 +233,7 @@ export default class App extends Component {
           <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
         {
           this.state.weather ? (
-               <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: {this.state.weather.latitude}</Text>
+               <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: {this.state.weather.hourly.summary}</Text>
           ) :   <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: (Hardcoded) Light rain starting in the evening.</Text>
         }
 
@@ -218,7 +244,7 @@ export default class App extends Component {
 
         {
      this.state.weather ? (
-       <Text> {this.state.weather.latitude}</Text>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
 
      ) : <Text> </Text>
    }
