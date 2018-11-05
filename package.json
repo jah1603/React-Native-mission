@@ -9,9 +9,14 @@
     "eject": "expo eject"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "expo": "^30.0.1",
+    "express": "^4.16.4",
     "native-base": "^2.8.1",
+    "node-fetch": "^2.2.1",
+    "nodemon": "^1.18.5",
     "react": "16.3.1",
+    "react-axios": "^2.0.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-circle-slider": "^1.1.1",
     "react-native-datepicker": "^1.7.2",
