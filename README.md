@@ -1,5 +1,5 @@
 # React-native-mission
-React native mission.
+React native mission
 
 <b>Start expo app: </b>
 
