@@ -178,6 +178,32 @@ export default class App extends Component {
     })
     }
 
+
+  timeConverterToHours = function (UNIX_timestamp) {
+
+  var a = new Date(UNIX_timestamp * 1000);
+
+  var hour = a.getHours(); // makes time easier to read (presumes wedding is pm!)
+  var min = a.getMinutes();
+  if (min < 10){
+    min = `0${min}`;
+  }
+  if (hour > 12){
+  var time = hour-12 + ':' + min + ' pm'  ;
+  }
+  else if (hour == 12){
+  var time = hour + ':' + min + ' pm' + ' (midday)'  ;
+  }
+  else if (hour == 0){
+  var time = 12 + ':' + min + ' pm' + ' (midnight)'  ;
+  }
+  else{
+  var time = hour + ':' + min + ' am'  ;
+  }
+
+  return time;
+  }
+
   render() {
     var self = this;
     return (
@@ -263,43 +289,43 @@ export default class App extends Component {
        <View style={styles.resultsWrapper}>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '100%'}}/>
-       <Text> Average temp: {this.state.weather.hourly.data[0].apparentTemperature} ℉</Text>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Text> Average temp: {this.state.weather.hourly.data[14].temperature} ℉</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-       <Text> Chance of rain: {this.state.weather.hourly.data[0].apparentTemperature}%</Text>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Text> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-       <Text> Sunrise: {this.state.weather.hourly.data[0].apparentTemperature} am, Sunset: {this.state.weather.hourly.data[0].apparentTemperature} pm</Text>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Text> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
        <Text>Moon phase: {this.state.weather.hourly.data[0].apparentTemperature}</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-       <Text>Low: {this.state.weather.hourly.data[0].apparentTemperature}, High: </Text>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Text>Low: { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-       <Text>Humidity: {this.state.weather.hourly.data[0].apparentTemperature}%</Text>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Text>Humidity: { this.state.weather.daily.data[0].humidity*100 }%</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-       <Text>Wind speed: {this.state.weather.hourly.data[0].apparentTemperature} mph</Text>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Text>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-       <Text>Cloud cover: {this.state.weather.hourly.data[0].apparentTemperature}%</Text>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Text>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
 
        </View>
@@ -340,7 +366,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'column',
-    backgroundColor: 'yellow',
     height: '200%'
   },
   weatherItem: {
@@ -348,9 +373,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     height: 100,
-    backgroundColor: 'green',
     borderWidth: 1,
-    borderColor: 'red'
+    borderColor: "#24b599"
   },
   buttonContainer: {
     alignItems: 'center',
