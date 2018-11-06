@@ -86,7 +86,8 @@ export default class App extends Component {
    dateSelected: 0,
    isModalVisible: false,
    weather: null,
-   position: null
+   position: null,
+   searchedLocation: null
  };
 
   handleSubmit = () => {
@@ -123,18 +124,18 @@ export default class App extends Component {
     var date = 1541427789;
     var lat = 42.3601;
     var long = -71.0589;
+    const value = this._form.getValue()
+    console.log('value: ', value.location);
+    var self = this;
     // var location = `${lat}, ${long}`
 
-    var location = "Edinburgh";
-
-    this.getCoordinates(location);
-
+    this.setState( {searchedLocation: value.location}, function(){ this.getCoordinates(self.state.searchedLocation) });
   }
 
     toggleModal(){
 
 
-      console.log("WEATHER", this.state.weather);
+
       this.setState({ isModalVisible: !this.state.isModalVisible });
 
     }
@@ -151,8 +152,6 @@ export default class App extends Component {
       var self = this;
 
         axios.get(url).then((response) => {
-
-          console.log("response items", response.data.items);
 
           var position = [parseFloat(response.data.items[1].lat), parseFloat(response.data.items[1].long)]
 
