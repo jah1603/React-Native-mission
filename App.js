@@ -90,10 +90,10 @@ export default class App extends Component {
    searchedLocation: null
  };
 
-  handleSubmit = () => {
-    const value = this._form.getValue();
-    console.log('value: ', value);
-  }
+  // handleSubmit = () => {
+  //   const value = this._form.getValue();
+  //   console.log('value: ', value);
+  // }
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -138,11 +138,6 @@ export default class App extends Component {
 
       this.setState({ isModalVisible: !this.state.isModalVisible });
 
-    }
-
-
-    returnWeatherData(){
-      return weather_data;
     }
 
 
@@ -263,20 +258,59 @@ export default class App extends Component {
 
           </View>
 
-        <View style={{flex: 1, justifyContent: 'space-between', flexDirection: 'row', padding: 40, justifyContent: 'center'}}>
-        <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
-
         {
      this.state.weather ? (
+       <View style={styles.resultsWrapper}>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
        <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       <View style={styles.weatherItem}>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       </View>
+
+       </View>
 
      ) : <Text> </Text>
    }
-        </View>
 
-          <TouchableOpacity onPress={this.toggleModal}>
+
+          <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center'}}>
           <View>
-            <Image source={require('./assets/darksky.png')} style={{position: 'relative', left: '0%', top: '50%', height: '40%', width: '70%'}}/>
+            <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '40%', width: '70%'}}/>
           </View>
           </TouchableOpacity>
 
@@ -301,6 +335,21 @@ const styles = StyleSheet.create({
     marginTop: 45,
     padding: 20,
     backgroundColor: 'transparent'
+  },
+  resultsWrapper: {
+    flex: 1,
+    justifyContent: 'space-between',
+    flexDirection: 'column',
+    backgroundColor: 'yellow'
+  },
+  weatherItem: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    height: '25%',
+    backgroundColor: 'green',
+    borderWidth: 1,
+    borderColor: 'red'
   },
   buttonContainer: {
     alignItems: 'center',
