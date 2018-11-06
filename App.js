@@ -263,7 +263,7 @@ export default class App extends Component {
        <View style={styles.resultsWrapper}>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '10%', height: '20%'}}/>
+       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '100%'}}/>
        <Text> {this.state.weather.hourly.data[0].apparentTemperature}</Text>
        </View>
 
@@ -308,11 +308,11 @@ export default class App extends Component {
    }
 
 
-          <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center'}}>
-          <View>
-            <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '40%', width: '70%'}}/>
-          </View>
-          </TouchableOpacity>
+   <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
+   <View>
+     <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '70%', width: '70%'}}/>
+   </View>
+   </TouchableOpacity>
 
 
 
@@ -340,13 +340,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'column',
-    backgroundColor: 'yellow'
+    backgroundColor: 'yellow',
+    height: '200%'
   },
   weatherItem: {
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    height: '25%',
+    height: 100,
     backgroundColor: 'green',
     borderWidth: 1,
     borderColor: 'red'
@@ -372,13 +373,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     padding: 20,
     backgroundColor: 'white'
-  },
-  dataContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    padding: 20,
-    backgroundColor: 'pink'
   },
   tableContainer: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   tableHead: { height: 40, backgroundColor: '#24b599' },

@@ -23,3 +23,10 @@ export default class Coordinates extends Component {
   })
   }
 }
+
+
+<TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center'}}>
+<View>
+  <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '40%', width: '70%'}}/>
+</View>
+</TouchableOpacity>
