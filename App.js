@@ -77,6 +77,7 @@ export default class App extends Component {
   this.processSubmit = this.processSubmit.bind(this);
   this.toggleModal = this.toggleModal.bind(this);
   this.getWeatherData = this.getWeatherData.bind(this);
+  this.getCoordinates = this.getCoordinates.bind(this);
 }
 
 
@@ -84,7 +85,8 @@ export default class App extends Component {
    fontLoaded: false,
    dateSelected: 0,
    isModalVisible: false,
-   weather: null
+   weather: null,
+   position: null
  };
 
   handleSubmit = () => {
@@ -121,11 +123,11 @@ export default class App extends Component {
     var date = 1541427789;
     var lat = 42.3601;
     var long = -71.0589;
-    var location = `${lat}, ${long}`
+    // var location = `${lat}, ${long}`
 
-    console.log("about to call weather data method");
+    var location = "Edinburgh";
 
-    this.getWeatherData(location, date);
+    this.getCoordinates(location);
 
   }
 
@@ -140,6 +142,29 @@ export default class App extends Component {
 
     returnWeatherData(){
       return weather_data;
+    }
+
+
+    getCoordinates(location){
+
+      const url = `http://weather2wed.herokuapp.com/longlat/${location}`
+      var self = this;
+
+        axios.get(url).then((response) => {
+
+          console.log("response items", response.data.items);
+
+          var position = [parseFloat(response.data.items[1].lat), parseFloat(response.data.items[1].long)]
+
+
+          this.setState({
+            coordinatesDataLoaded: true,
+            position: position,
+          }, function(){this.getWeatherData(`${self.state.position[0]},${self.state.position[1]}`, 1541427789)})
+    }).catch(function(error){
+      console.log(error);
+      console.log("Error fetching coordinates data.");
+    })
     }
 
 
