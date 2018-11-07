@@ -129,14 +129,10 @@ export default class App extends Component {
 
   processSubmit(){
     var date = 1541427789;
-    var lat = 42.3601;
-    var long = -71.0589;
-    const value = this._form.getValue()
-    console.log('value: ', value.location);
     var self = this;
     // var location = `${lat}, ${long}`
 
-    this.setState( {searchedLocation: value.location}, function(){ this.getCoordinates(self.state.searchedLocation) });
+  this.getCoordinates(self.state.searchedLocation)
   }
 
     toggleModal(){
