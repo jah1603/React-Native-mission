@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
@@ -268,7 +268,7 @@ export default class App extends Component {
         <Image source={require('./assets/weather2wed_button.jpg')} style={{height: '60%', width: '52%'}}/>
         </TouchableOpacity>
       </View>
-      <View>
+      <ScrollView>
         <Modal
         isVisible={this.state.isModalVisible}
         style={styles.modalContainer}
@@ -293,44 +293,50 @@ export default class App extends Component {
        <View style={styles.resultsWrapper}>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/partly-cloudy-day.png')} style={{width: '25%', height: '90%'}}/>
        <Text> Average temp: {this.state.weather.hourly.data[14].temperature} ℉</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/rain_chance.png')} style={{width: '25%', height: '90%'}}/>
        <Text> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/sunset.png')} style={{width: '25%', height: '90%'}}/>
        <Text> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: '25%', height: '90%'}}/>
        <Text>Moon phase: {this.state.weather.hourly.data[0].apparentTemperature}</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/temperature.png')} style={{width: '25%', height: '90%'}}/>
        <Text>Low: { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/humidity.jpg')} style={{width: '25%', height: '90%'}}/>
        <Text>Humidity: { this.state.weather.daily.data[0].humidity*100 }%</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/wind-speed.png')} style={{width: '25%', height: '90%'}}/>
        <Text>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/weather_icons/png/001-sun.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/clouds.png')} style={{width: '25%', height: '90%'}}/>
        <Text>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
+
+       <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
+       <View>
+         <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '70%', width: '70%'}}/>
+       </View>
+       </TouchableOpacity>
 
        </View>
 
@@ -338,15 +344,9 @@ export default class App extends Component {
    }
 
 
-   <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
-   <View>
-     <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '70%', width: '70%'}}/>
-   </View>
-   </TouchableOpacity>
-
           </View>
         </Modal>
-      </View>
+      </ScrollView>
       </View>
     </ImageBackground>
     );
@@ -366,14 +366,12 @@ const styles = StyleSheet.create({
   resultsWrapper: {
     flex: 1,
     justifyContent: 'space-between',
-    flexDirection: 'column',
-    height: '200%'
+    flexDirection: 'column'
   },
   weatherItem: {
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    height: 100,
     borderWidth: 1,
     borderColor: "#24b599"
   },
