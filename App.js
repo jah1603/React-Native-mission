@@ -273,6 +273,10 @@ export default class App extends Component {
         isVisible={this.state.isModalVisible}
         style={styles.modalContainer}
         >
+          <TouchableOpacity onPress={this.toggleModal} style={{ height: 22}}>
+            <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
+          </TouchableOpacity>
+
           <View style={{flex: 1, backgroundColor: 'transparent'}}>
 
           <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
@@ -339,9 +343,6 @@ export default class App extends Component {
      <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '70%', width: '70%'}}/>
    </View>
    </TouchableOpacity>
-
-
-
 
           </View>
         </Modal>
