@@ -83,7 +83,7 @@ export default class App extends Component {
 
   state = {
    fontLoaded: false,
-   dateSelected: 0,
+   dateSelected: null,
    isModalVisible: false,
    weather: null,
    position: null,
@@ -115,7 +115,12 @@ export default class App extends Component {
     var month = months[dateToDisplay.getMonth()];
     var date = dateToDisplay.getDate();
 
-    return `${date} ${month}`;
+    if (!this.state.dateSelected){
+      return 'Slide to select date'
+    }
+    else {
+      return `${date} ${month}`;
+    }
   }
 
   getVal(val) {
@@ -284,7 +289,7 @@ export default class App extends Component {
             textColor={'black'}
             textSize={20}
 		/>
-    <Text style={{fontSize: 20, color: "#24b599"}}>
+    <Text style={{fontSize: 25, fontWeight: 'bold', color: "#103356", textShadowColor: 'white', textShadowOffset: {width: -1, height: 1}, textShadowRadius: 10}}>
     {`${this.convertSecondsToCalendarDate()}`}
     </Text>
     </View>
