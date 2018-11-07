@@ -186,6 +186,18 @@ export default class App extends Component {
       case "partly-cloudy-day": return require("./assets/icons/partly-cloudy-day.png");
       case "partly-cloudy-day": return require("./assets/icons/partly-cloudy-day.png");
       case "fog": return require("./assets/icons/fog.png");
+      case "clear-day": return require("./assets/icons/clear-day.png");
+      case "clear-night": return require("./assets/icons/clear-night.png");
+      case "clouds": return require("./assets/icons/clouds.png");
+      case "cloudy": return require("./assets/icons/cloudy.png");
+      case "partly-cloudy-night1": return require("./assets/icons/partly-cloudy-night1.png");
+      case "partly-cloudy-night": return require("./assets/icons/partly-cloudy-night.png");
+      case "pine": return require("./assets/icons/pine.png");
+      case "rain": return require("./assets/icons/rain.png");
+      case "raining": return require("./assets/icons/raining.png");
+      case "sleet": return require("./assets/icons/sleet.png");
+      case "wind": return require("./assets/icons/wind.png");
+      case "wind1": return require("./assets/icons/wind1.png");
   }
 }
 
