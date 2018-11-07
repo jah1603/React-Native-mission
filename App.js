@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
+import { View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
@@ -212,6 +212,7 @@ export default class App extends Component {
 }
 
 
+
   timeConverterToHours = function (UNIX_timestamp) {
 
   var a = new Date(UNIX_timestamp * 1000);
@@ -237,6 +238,14 @@ export default class App extends Component {
   return time;
   }
 
+
+  updateLocationState(searchedLocation){
+    this.setState({
+      searchedLocation: searchedLocation
+    })
+
+  }
+
   render() {
     var self = this;
     return (
@@ -257,15 +266,12 @@ export default class App extends Component {
    ) : null
  }
         <View style={{paddingBottom: '10%'}}>
-        <Form
-          style={{alignItems: 'center', justifyContent: 'center', textAlign: 'center', color: "#24b599"}}
-          ref={c => this._form = c}
-          type={User}
-          options={options}
-          color="#12D8FA"
-          textAlign="center"
-          underlineColorAndroid="rgba(0,0,0,0)"
-        />
+        <TextInput
+      style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
+      onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
+      value={this.state.searchedLocation} placeholder='Where? Place or postcode' placeholderTextColor='white'
+      underlineColorAndroid='transparent'
+    />
         </View>
 
         <View style={{ width: '100%', height: '50%', alignItems: 'center'}}>
@@ -289,7 +295,7 @@ export default class App extends Component {
             textColor={'black'}
             textSize={20}
 		/>
-    <Text style={{fontSize: 25, fontWeight: 'bold', color: "white", textShadowColor: '#103356', textShadowOffset: {width: -2.5, height: 2.5}, textShadowRadius: 10}}>
+    <Text style={{fontSize: 25, fontWeight: 'normal', color: "white", textShadowColor: '#103356', textShadowOffset: {width: -2.5, height: 2.5}, textShadowRadius: 10}}>
     {`${this.convertSecondsToCalendarDate()}`}
     </Text>
     </View>
