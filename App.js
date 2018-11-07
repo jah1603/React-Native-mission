@@ -123,6 +123,24 @@ export default class App extends Component {
     }
   }
 
+  convertSecondsToCalendarDateForOutputText(){
+    var fractionOfYear = this.state.dateSelected / 365;
+    var secondsInAYear = 31536000;
+    var seconds = fractionOfYear * secondsInAYear;
+
+    var dateToDisplay = new Date(seconds * 1000);
+    var months = ['January','Febuary','March','April','May','June','July','August','September','October','November','December'];
+    var month = months[dateToDisplay.getMonth()];
+    var date = dateToDisplay.getDate();
+
+    if (!this.state.dateSelected){
+      return '1 January';
+    }
+    else {
+      return `${date} ${month}`;
+    }
+  }
+
   getVal(val) {
         console.warn(val);
     }
@@ -317,8 +335,8 @@ export default class App extends Component {
           <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
         {
           this.state.weather ? (
-               <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: {this.state.weather.hourly.summary}</Text>
-          ) :   <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDate()}: (Hardcoded) Light rain starting in the evening.</Text>
+               <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDateForOutputText()}: {this.state.weather.hourly.summary}</Text>
+          ) :   <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
         }
 
           </View>
