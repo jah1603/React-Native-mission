@@ -11,6 +11,13 @@ expo start
 react-native start
 
 
+<b>Miscellaneous:</b>
+
+npm i react-native-modalbox
+
+npm i react-native-circle-slider
+
+
 <b>For logging (see in Terminal):</b>
 
 brew cask install android-platform-tools
