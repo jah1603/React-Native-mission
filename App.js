@@ -98,10 +98,11 @@ export default class App extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'open-raleway': require('./assets/fonts/Raleway-Regular.ttf'),
+      'Raleway-Regular': require('./assets/fonts/Raleway-Regular.ttf'),
     });
 
      this.setState({ fontLoaded: true });
+     console.log("FONT LOADED", this.state.fontLoaded);
   }
 
   convertSecondsToCalendarDate(){
@@ -244,7 +245,7 @@ export default class App extends Component {
    this.state.fontLoaded ? (
 
      <View>
-     <Text style={{ fontFamily: 'open-raleway', paddingBottom: '7.5%', fontSize: 40, textAlign: 'center', fontWeight: 'bold', color: "#24b599"}}>
+     <Text style={{ fontFamily: 'Raleway-Regular', paddingBottom: '7.5%', fontSize: 40, textAlign: 'center',  color: "white"}}>
        Weather2Wed
      </Text>
      </View>
@@ -381,6 +382,7 @@ export default class App extends Component {
 }
 
 const styles = StyleSheet.create({
+
   container: {
     flex: 1,
     justifyContent: 'space-between',
