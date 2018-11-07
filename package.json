@@ -29,6 +29,7 @@
     "react-native-fit-image": "^1.5.4",
     "react-native-modal": "^6.5.0",
     "react-native-modalbox": "^1.6.0",
+    "react-native-snap-carousel": "^3.7.5",
     "react-native-svg": "^8.0.8",
     "react-native-table-component": "^1.1.8",
     "tcomb-form-native": "^0.6.20"
