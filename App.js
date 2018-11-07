@@ -87,7 +87,8 @@ export default class App extends Component {
    isModalVisible: false,
    weather: null,
    position: null,
-   searchedLocation: null
+   searchedLocation: null,
+   icon: '',
  };
 
   // handleSubmit = () => {
@@ -134,7 +135,7 @@ export default class App extends Component {
 
     toggleModal(){
 
-
+      console.log("ICON", this.state.icon);
 
       this.setState({ isModalVisible: !this.state.isModalVisible });
 
@@ -169,7 +170,8 @@ export default class App extends Component {
 
           console.log("data", this.data);
           this.setState({
-            weather: response.data
+            weather: response.data,
+            icon: `${response.data.daily.data[0].icon}`
           }, function(){this.toggleModal()})
 
     }).catch(function(error){
@@ -177,6 +179,15 @@ export default class App extends Component {
       console.log("Error fetching weather data.");
     })
     }
+
+
+     getImage(icon) {
+      switch(icon) {
+      case "partly-cloudy-day": return require("./assets/icons/partly-cloudy-day.png");
+      case "partly-cloudy-day": return require("./assets/icons/partly-cloudy-day.png");
+      case "fog": return require("./assets/icons/fog.png");
+  }
+}
 
 
   timeConverterToHours = function (UNIX_timestamp) {
@@ -293,7 +304,7 @@ export default class App extends Component {
        <View style={styles.resultsWrapper}>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/partly-cloudy-day.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={ this.getImage(this.state.icon) } style={{width: '25%', height: '90%'}}/>
        <Text> Average temp: {this.state.weather.hourly.data[14].temperature} ℉</Text>
        </View>
 
