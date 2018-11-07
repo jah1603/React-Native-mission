@@ -362,14 +362,14 @@ export default class App extends Component {
        <Text style={styles.weatherItemText}>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
        </View>
 
-       <View style={styles.weatherItem}>
+       <View style={styles.lastWeatherItem}>
        <Image source={require('./assets/icons/clouds.png')} style={{width: '25%', height: '90%'}}/>
        <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
 
        <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
-       <View>
-         <Image source={require('./assets/darksky.png')} style={{position: 'relative', top: '0%', height: '70%', width: '70%'}}/>
+       <View style={{justifyContent: 'center'}}>
+         <Image source={require('./assets/darksky.png')} style={{ height: '70%', width: '70%', marginLeft: '15%' }}/>
        </View>
        </TouchableOpacity>
 
@@ -408,7 +408,19 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    borderWidth: 1,
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderColor: "#24b599"
+  },
+  lastWeatherItem: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    borderRightWidth: 1,
+    borderLeftWidth: 1,
+    borderBottomWidth: 1,
+    borderBottomLeftRadius: 5,
+    borderBottomRightRadius: 5,
     borderColor: "#24b599"
   },
   weatherItemText: {
@@ -434,8 +446,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'column',
-    padding: 20,
-    backgroundColor: 'white'
+    padding: 5,
+    backgroundColor: 'white',
+    borderRadius: 5
   },
   tableContainer: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   tableHead: { height: 40, backgroundColor: '#24b599' },
