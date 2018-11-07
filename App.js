@@ -53,8 +53,8 @@ const formStyles = {
 const options = {
   fields: {
     location: {
-      placeholder: "Where are you getting married?",
-      placeholderTextColor: "#24b599",
+      placeholder: "Where (place or postcode)?",
+      placeholderTextColor: "white",
       error: 'Please enter a place or postcode',
       textAlign: 'center',
       fontSize: 28,
@@ -88,7 +88,7 @@ export default class App extends Component {
    weather: null,
    position: null,
    searchedLocation: null,
-   icon: '',
+   icon: ''
  };
 
   // handleSubmit = () => {
@@ -250,7 +250,7 @@ export default class App extends Component {
    this.state.fontLoaded ? (
 
      <View>
-     <Text style={{ fontFamily: 'Raleway-Regular', paddingBottom: '7.5%', fontSize: 40, textAlign: 'center',  color: "white"}}>
+     <Text style={{ fontFamily: 'Raleway-Regular', paddingBottom: '7.5%', fontSize: 45, fontWeight: '400', textAlign: 'center',  color: "white"}}>
        Weather2Wed
      </Text>
      </View>
@@ -273,10 +273,10 @@ export default class App extends Component {
 			arcDirection={'CW'}
             backgroundColor={"white"}
             value={0}
-            btnRadius={15}
+            btnRadius={10}
             btnColor={'#24b599'}
             sliderRadius={110}
-            sliderWidth={25}
+            sliderWidth={17.5}
             startDegree={0}
             maxValue={370.069444444}
             onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
@@ -289,7 +289,7 @@ export default class App extends Component {
             textColor={'black'}
             textSize={20}
 		/>
-    <Text style={{fontSize: 25, fontWeight: 'bold', color: "#103356", textShadowColor: 'white', textShadowOffset: {width: -1, height: 1}, textShadowRadius: 10}}>
+    <Text style={{fontSize: 25, fontWeight: 'bold', color: "white", textShadowColor: '#103356', textShadowOffset: {width: -2.5, height: 2.5}, textShadowRadius: 10}}>
     {`${this.convertSecondsToCalendarDate()}`}
     </Text>
     </View>
@@ -298,7 +298,7 @@ export default class App extends Component {
         <TouchableOpacity
         style={styles.button}
         onPress={this.processSubmit}>
-        <Image source={require('./assets/weather2wed_button.jpg')} style={{height: '60%', width: '52%'}}/>
+        <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 100, width: 100 }}/>
         </TouchableOpacity>
       </View>
       <ScrollView>
