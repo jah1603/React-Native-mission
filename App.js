@@ -236,7 +236,7 @@ export default class App extends Component {
     var self = this;
     return (
       <ImageBackground
-               source={require('./assets/bride8.jpeg')}
+               source={require('./assets/affair-anniversary-beach.png')}
                style={styles.backgroundStyle}
                >
 
