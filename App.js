@@ -180,6 +180,10 @@ export default class App extends Component {
     })
     }
 
+    fahrenheitToCelsius = function (fahrenheit) {
+      const celsius = Math.round(((fahrenheit - 32)/1.8));
+      return celsius;
+    };
 
      getImage(icon) {
       switch(icon) {
@@ -317,7 +321,7 @@ export default class App extends Component {
 
        <View style={styles.weatherItem}>
        <Image source={ this.getImage(this.state.icon) } style={{width: '25%', height: '90%'}}/>
-       <Text> Average temp: {this.state.weather.hourly.data[14].temperature} ℉</Text>
+       <Text> Average temp: { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C</Text>
        </View>
 
        <View style={styles.weatherItem}>
