@@ -392,12 +392,6 @@ export default class App extends Component {
        <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
 
-       <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
-       <View style={{justifyContent: 'center'}}>
-         <Image source={require('./assets/darksky.png')} style={{ height: 100, width: 200 }}/>
-       </View>
-       </TouchableOpacity>
-
        </ScrollView>
 
        </View>
@@ -405,8 +399,14 @@ export default class App extends Component {
      ) : <Text> </Text>
    }
 
+   <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
+   <View style={{justifyContent: 'center'}}>
+     <Image source={require('./assets/darksky.png')} style={{ height: 33.98509187, width: 150, marginLeft: 75 }}/>
+   </View>
+   </TouchableOpacity>
 
           </View>
+
         </Modal>
 
       </View>
