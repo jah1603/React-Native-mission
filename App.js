@@ -4,7 +4,8 @@ import {ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
 import Modal from 'react-native-modal';
-import { Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import {Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
+import FitImage from 'react-native-fit-image';
 
 import { Font } from 'expo';
 import t from 'tcomb-form-native';
@@ -321,7 +322,7 @@ export default class App extends Component {
         <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 100, width: 100 }}/>
         </TouchableOpacity>
       </View>
-      <ScrollView>
+
         <Modal
         isVisible={this.state.isModalVisible}
         style={styles.modalContainer}
@@ -346,12 +347,16 @@ export default class App extends Component {
        <View style={styles.resultsWrapper}>
 
        <View style={styles.weatherItem}>
-       <Image source={ this.getImage(this.state.icon) } style={{width: '25%', height: '90%'}}/>
+       <View backgroundColor="red">
+       <FitImage source={ this.getImage(this.state.icon) } style={{ height: 100, width: 100}}/>
+       </View>
+       <View backgroundColor="green">
        <Text style={styles.weatherItemText}> Average temp: { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C</Text>
+       </View>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/rain_chance.png')} style={{width: '25%', height: '90%'}}/>
+       <Image source={require('./assets/icons/rain_chance.png')} width={100}/>
        <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
        </View>
 
@@ -399,7 +404,7 @@ export default class App extends Component {
 
           </View>
         </Modal>
-      </ScrollView>
+    
       </View>
     </ImageBackground>
     );
