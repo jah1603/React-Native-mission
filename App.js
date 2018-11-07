@@ -337,8 +337,8 @@ export default class App extends Component {
           <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
         {
           this.state.weather ? (
-               <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDateForOutputText()}: {this.state.weather.hourly.summary}</Text>
-          ) :   <Text style={{color: 'white', padding: 5}}>Typical weather for {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
+               <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: '{this.state.weather.hourly.summary}'</Text>
+          ) :   <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
         }
 
           </View>
@@ -437,7 +437,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderRightWidth: 1,
     borderLeftWidth: 1,
-    borderColor: "#24b599"
+    borderColor: "#24b599",
+    padding: 15
   },
   lastWeatherItem: {
     flex: 1,
@@ -448,11 +449,14 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
-    borderColor: "#24b599"
+    borderColor: "#24b599",
+    padding: 15
   },
   weatherItemText: {
     flex: 1,
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    paddingLeft: 25,
+    fontSize: 18
   },
   buttonContainer: {
     alignItems: 'center',
