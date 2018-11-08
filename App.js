@@ -555,7 +555,7 @@ export default class App extends Component {
        <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
 
-       <View style={{width: 250, height: 250}}>
+       <View style={{width: 250, height: 250, alignItems: 'center'}}>
         <MapView style={styles.map}
         region={{
           latitude: self.state.position[0],
@@ -564,6 +564,15 @@ export default class App extends Component {
           longitudeDelta: 0.01
         }}
         >
+
+        <MapView.Marker
+          coordinate={{
+            latitude: self.state.position[0],
+            longitude: self.state.position[1]
+          }}
+          title={'You searched:'}
+          description={`'${this.state.searchedLocation}'`}
+          />
 
         </MapView>
        </View>
