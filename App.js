@@ -7,8 +7,10 @@ import Modal from 'react-native-modal';
 import {Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import FitImage from 'react-native-fit-image';
 import Carousel from 'react-native-snap-carousel';
-import { Font } from 'expo';
+import { Font} from 'expo';
 import t from 'tcomb-form-native';
+import key from './google.js';
+import MapView from 'react-native-maps';
 
 // const Weather = require('./models/Weather.js');
 import { getWeatherData } from './models/Helper.js';
@@ -186,6 +188,7 @@ export default class App extends Component {
 
 
     getWeatherData = function(location, seconds){
+      console.log("API Key", key);
         const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
         console.log("RETRIEVING WEAther");
         axios.get(url).then(response => {
@@ -508,6 +511,7 @@ export default class App extends Component {
 
        <ScrollView>
 
+
        <View style={styles.weatherItem}>
 
        <Image source={ this.getImage(this.state.icon) } style={{width: 75, height: 75}}/>
@@ -550,6 +554,21 @@ export default class App extends Component {
        <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
        <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
+
+       <View style={{width: 250, height: 250}}>
+        <MapView style={styles.map}
+        region={{
+          latitude: self.state.position[0],
+          longitude: self.state.position[1],
+          latitudeDelta: 0.01,
+          longitudeDelta: 0.01
+        }}
+        >
+
+        </MapView>
+       </View>
+
+
 
        </ScrollView>
 
@@ -640,6 +659,13 @@ const styles = StyleSheet.create({
     padding: 5,
     backgroundColor: 'white',
     borderRadius: 5
+  },
+  map: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0
   },
   tableContainer: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
   tableHead: { height: 40, backgroundColor: '#24b599' },
