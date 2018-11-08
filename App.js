@@ -173,7 +173,7 @@ export default class App extends Component {
 
         axios.get(url).then((response) => {
 
-          var position = [parseFloat(response.data.items[1].lat), parseFloat(response.data.items[1].long)]
+          var position = [parseFloat(response.data.items[0].lat), parseFloat(response.data.items[0].long)]
 
 
           this.setState({
@@ -550,18 +550,22 @@ export default class App extends Component {
        <Text style={styles.weatherItemText}>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
        </View>
 
-       <View style={styles.lastWeatherItem}>
+       <View style={styles.weatherItem}>
        <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
        <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
 
-       <View style={{width: 250, height: 250, alignItems: 'center'}}>
+       <View style={styles.lastWeatherItem}>
         <MapView style={styles.map}
+        scrollEnabled={false}
+        toolbarEnabled={false}
+        zoomEnabled={true}
+        zoomControlEnabled={true}
         region={{
           latitude: self.state.position[0],
           longitude: self.state.position[1],
-          latitudeDelta: 0.01,
-          longitudeDelta: 0.01
+          latitudeDelta: 1,
+          longitudeDelta: 1
         }}
         >
 
@@ -576,8 +580,6 @@ export default class App extends Component {
 
         </MapView>
        </View>
-
-
 
        </ScrollView>
 
@@ -638,7 +640,8 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     borderColor: "#24b599",
-    padding: 15
+    padding: 15,
+    height: 500
   },
   weatherItemText: {
     flex: 1,
