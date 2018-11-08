@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
+import { WebView, View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
@@ -89,7 +89,8 @@ export default class App extends Component {
    weather: null,
    position: null,
    searchedLocation: null,
-   icon: ''
+   icon: '',
+   loadingInProcess: null
  };
 
   // handleSubmit = () => {
@@ -151,14 +152,14 @@ export default class App extends Component {
     var self = this;
     // var location = `${lat}, ${long}`
 
-  this.getCoordinates(self.state.searchedLocation)
+    this.setState({ loadingInProcess: true }, function(){this.getCoordinates(self.state.searchedLocation)})
   }
 
     toggleModal(){
 
       console.log("ICON", this.state.icon);
 
-      this.setState({ isModalVisible: !this.state.isModalVisible });
+      this.setState({ loadingInProcess: false }, function(){this.setState({ isModalVisible: !this.state.isModalVisible })});
 
     }
 
@@ -263,7 +264,28 @@ export default class App extends Component {
 
   render() {
     var self = this;
-    return (
+
+
+    if (self.state.loadingInProcess === true){
+      return (
+        <ImageBackground
+                 source={require('./assets/affair-anniversary-beach.png')}
+                 style={styles.backgroundStyle}
+                 >
+
+      
+
+        <WebView
+         source={{html: '<iframe width="500" height="500" src="https://lottiefiles.com/iframe/197-glow-loading" frameborder="0" allowfullscreen></iframe>'}}
+        />
+
+        </ImageBackground>
+      )
+
+    }
+
+    else {
+          return (
       <ImageBackground
                source={require('./assets/affair-anniversary-beach.png')}
                style={styles.backgroundStyle}
@@ -413,6 +435,7 @@ export default class App extends Component {
     </ImageBackground>
     );
   }
+}
 }
 
 const styles = StyleSheet.create({
