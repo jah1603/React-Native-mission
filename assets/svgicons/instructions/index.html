@@ -1,0 +1,116 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<head lang="en">
+	<meta http-equiv="content-type" content="text/html;charset=utf-8">
+	<title>DXC Animated Icons</title>
+	<!-- Framework CSS -->
+	<link rel="stylesheet" href="assets/blueprint-css/screen.css" type="text/css" media="screen, projection">
+	<link rel="stylesheet" href="assets/blueprint-css/print.css" type="text/css" media="print">
+	<!--[if lt IE 8]><link rel="stylesheet" href="assets/blueprint-css/ie.css" type="text/css" media="screen, projection"><![endif]-->
+	<link rel="stylesheet" href="assets/blueprint-css/plugins/fancy-type/screen.css" type="text/css" media="screen, projection">
+	<style type="text/css" media="screen">
+		p, table, hr, .box { margin-bottom:25px; }
+		.box p { margin-bottom:10px; }
+	</style>
+</head>
+
+
+<body>
+	<div class="container">
+	
+		<h3 class="center alt">&ldquo;DXC Animated Icons&rdquo; Documentation by &ldquo;DXC&rdquo; v1.0</h3>
+		
+		<hr>
+		
+		<h1 class="center">DXC Animated Icons</h1>
+		
+		<div class="borderTop">
+			<div class="span-6 colborder info prepend-1">
+				<p class="prepend-top">
+					<strong>
+					By: DXC (Lance Snider)<br>
+					<a href="http://codecanyon.net/user/dxc">Email</a><br/>
+					</strong>
+				</p>
+			</div><!-- end div .span-6 -->		
+	
+			<div class="span-12 last">
+				<p class="prepend-top append-0">Thanks so much for purchasing my item! If you have any questions, please feel free to email via my user page contact form <a href="http://codecanyon.net/user/dxc">here</a>. </p>
+			</div>
+		</div><!-- end div .borderTop -->
+		<hr>
+
+		IMPORTANT! To test these icons, they must be uploaded to a server or you must be using a local host like MAMP or WAMP.
+		<br/><br/>
+		
+		<h3 id="htmlStructure"><strong>Setting Up Your HTML</strong></h3>
+		<p>
+			<ol>
+				<li>Open the HTML file where you'd like to put the Animated Icons.</li>
+				<li>Add the following code inside the head tags.</li>
+				<pre>&#60;script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"/>&#60;/script>
+&#60;script src="js/noframework.waypoints.min.js">&#60;/script>
+&#60;script src="js/dxcicons.js" type="text/javascript"/>&#60;/script>
+&#60;script src="js/dxcweathericons.js" type="text/javascript"/>&#60;/script>
+&#60;script src="js/snap.svg.js" type="text/javascript">&#60;/script>
+&#60;script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript">&#60;/script>
+&#60;link rel="stylesheet" type="text/css" href="css/dxcweathericons.css"></pre>
+				<li>You'll need to add a div for each icon. Just copy and paste the divs below based on which one(s) you want to use.</li>
+				<pre>&#60;div class="weathericon clearNightIcon">&#60;/div>
+&#60;div class="weathericon lightningIcon">&#60;/div>
+&#60;div class="weathericon rainyIcon">&#60;/div</pre>
+				<li>If you'd like to add button to control the icons, use the following code. The numbers in between the [] are the icons you want to affect. For example, if you wanted to do somthing to the first, third, and fourth (remember, counting starts with 0) icons, you would add the following code: </li>
+				<pre>
+&#60;button onclick="restartIcons([0,2,3])">Restart&#60;/button>
+				</pre>
+			</ol>
+		<hr>
+
+		<h3 id="javascript"><strong>Setting Up Your Javascript File (Optional)</strong></h3>
+	
+		<ol>
+			<li>Open js/dxcicons.js</li>
+			<li>The following can be easily modified in lines 2 - 7</li>
+			<ol>
+				<li>Change the path to the images</li>
+				<li>Modify the stagger between the animations of each icon</li>
+				<li>Determine whether or not to have a rollover animation</li>
+				<li>Determine how much bigger the icon is on rollower (1 = stays the same)</li>
+				<li>Determine speed of the animation (1 = normal speed)</li>
+				<li>Determine whether icons should start animating right when the page loads</li>
+			</ol>
+
+
+
+			<li>On line 10 you can add link URL's to each icon. The first spot in the array coorisponds to the first icon. If one of the icons won't have a link, leave a blank spot (,,) In this example, only the first and fourth icons have a link. </li>
+			<pre>
+var iconLinks = ["http://aprendagames.com",,,"http://aprendagames.com"];
+			</pre>
+			
+
+		</ol>
+
+		<hr>
+
+		<h3 id="javascript"><strong>Upload Your Files</strong></h3>
+		
+		
+		<ol>
+			<li>Log into your hosting space via FTP software (I recommend <a href="http://panic.com/transmit/">Transmit</a>).</li>
+			<li>Upload the files to your server.</li>
+		</ol>
+	
+			
+		
+		
+		
+		
+		<hr>
+		
+		<p>Once again, thank you so much for purchasing this item. As I said at the beginning, I'd be glad to help you if you have any questions relating to this theme. No guarantees, but I'll do my best to assist. If you have a more general question relating to the items on CodeCanyon, you might consider visiting the forums and asking your question in the "Item Discussion" section.</p> 
+		
+		<p class="append-bottom alt large"><strong>Lance Snider</strong></p>
+		
+		<hr class="space">
+	</div><!-- end div .container -->
+</body>
+</html>
