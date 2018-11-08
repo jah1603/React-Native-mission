@@ -150,7 +150,6 @@ export default class App extends Component {
     }
 
   processSubmit(){
-    var date = 1541427789;
     var self = this;
     // var location = `${lat}, ${long}`
 
@@ -165,6 +164,15 @@ export default class App extends Component {
 
     }
 
+    dateForRequest(dateChosen){
+      var newYearsDay2019 = 1483228800;
+      var fractionOfYear = dateChosen / 365;
+      var secondsInAYear = 31536000;
+      var seconds = fractionOfYear * secondsInAYear;
+
+      return seconds + 1483228800;
+    }
+
 
     getCoordinates(location){
 
@@ -174,12 +182,11 @@ export default class App extends Component {
         axios.get(url).then((response) => {
 
           var position = [parseFloat(response.data.items[0].lat), parseFloat(response.data.items[0].long)]
-
-
+          console.log("DATE SEARCHED", self.state.dateSelected);
           this.setState({
             coordinatesDataLoaded: true,
             position: position,
-          }, function(){this.getWeatherData(`${self.state.position[0]},${self.state.position[1]}`, 1541427789)})
+          }, function(){this.getWeatherData(`${self.state.position[0]},${self.state.position[1]}`, self.dateForRequest(self.state.dateSelected))})
     }).catch(function(error){
       console.log(error);
       console.log("Error fetching coordinates data.");
@@ -227,6 +234,7 @@ export default class App extends Component {
       case "sleet": return require("./assets/icons/sleet.png");
       case "wind": return require("./assets/icons/wind.png");
       case "wind1": return require("./assets/icons/wind1.png");
+      case "snow": return require("./assets/weather_icons/png/037-snowflake.png");
   }
 }
 
@@ -308,7 +316,7 @@ export default class App extends Component {
               sliderRadius={110}
               sliderWidth={17.5}
               startDegree={0}
-              maxValue={370.069444444}
+              maxValue={365}
               onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
               onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
               onValueChange={val => this.setState({ dateSelected: val })}
@@ -462,7 +470,7 @@ export default class App extends Component {
             sliderRadius={110}
             sliderWidth={17.5}
             startDegree={0}
-            maxValue={370.069444444}
+            maxValue={365}
             onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
             onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
             onValueChange={val => this.setState({ dateSelected: val })}
