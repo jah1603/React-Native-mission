@@ -11,6 +11,7 @@ import { Font} from 'expo';
 import t from 'tcomb-form-native';
 import key from './google.js';
 import MapView from 'react-native-maps';
+import SVGImage from 'react-native-svg-image';
 
 // const Weather = require('./models/Weather.js');
 import { getWeatherData } from './models/Helper.js';
@@ -230,7 +231,7 @@ export default class App extends Component {
       case "pine": return require("./assets/icons/pine.png");
       case "rain": return require("./assets/svgicons/weathericons/images/rainyIcon.svg");
       case "raining": return require("./assets/svgicons/weathericons/images/rainyIcon.svg");
-      case "sleet": return require("./assets/icons/snowShowersIcon.png");
+      case "sleet": return require("./assets/svgicons/weathericons/images/snowShowersIcon.svg");
       case "wind": return require("./assets/svgicons/weathericons/images/windyIcon.svg");
       case "wind1": return require("./assets/svgicons/weathericons/images/windyIcon.svg");
       case "snow": return require("./assets/svgicons/weathericons/images/snowyIcon.svg");
@@ -373,22 +374,22 @@ export default class App extends Component {
          </View>
 
          <View style={styles.weatherItem}>
-         <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
+         <Image source={require('./assets/svgicons/weathericons/images/showersIcon.svg')} style={{width: 150, height: 150}}/>
          <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
          </View>
 
          <View style={styles.weatherItem}>
-         <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
+         <Image source={require('./assets/svgicons/weathericons/images/windySunnyIcon.svg')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
          </View>
 
          <View style={styles.weatherItem}>
-         <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: 75, height: 75}}/>
+         <Image source={require('./assets/svgicons/weathericons/images/clearNightIcon.svg')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Moon phase: {this.state.weather.hourly.data[0].apparentTemperature}</Text>
          </View>
 
          <View style={styles.weatherItem}>
-         <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
+         <Image source={require('./assets/svgicons/weathericons/images/thermometerHotIcon.svg')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureLow)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureHigh)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
          </View>
 
@@ -403,7 +404,7 @@ export default class App extends Component {
          </View>
 
          <View style={styles.lastWeatherItem}>
-         <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
+         <Image source={require('./assets/svgicons/weathericons/images/mostlyCloudyIcon.svg')} style={{width: 75, height: 75}}/>
          <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
          </View>
 
@@ -528,22 +529,22 @@ export default class App extends Component {
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
+       <Image source={require('./assets/svgicons/weathericons/images/showersIcon.svg')} style={{width: 75, height: 75}}/>
        <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
+       <Image source={require('./assets/icons/windySunnyIcon.svg')} style={{width: 150, height: 150}}/>
        <Text style={styles.weatherItemText}> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: 75, height: 75}}/>
+       <SVGImage source={{uri: './assets/svgicons/weathericons/images/clearNightIcon.svg'}} style={{width: 150, height: 150}}/>
        <Text style={styles.weatherItemText}>Moon phase: {this.state.weather.hourly.data[0].apparentTemperature}</Text>
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
+       <Image source={require('./assets/svgicons/weathericons/images/thermometerHotIcon.svg')} style={{width: 75, height: 75}}/>
        <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureLow)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureHigh)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
        </View>
 
@@ -558,7 +559,7 @@ export default class App extends Component {
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
+       <Image source={require('./assets/svgicons/weathericons/images/mostlyCloudyIcon.svg')} style={{width: 75, height: 75}}/>
        <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
        </View>
 

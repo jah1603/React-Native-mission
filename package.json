@@ -33,6 +33,7 @@
     "react-native-modalbox": "^1.6.0",
     "react-native-snap-carousel": "^3.7.5",
     "react-native-svg": "^8.0.8",
+    "react-native-svg-image": "^2.0.1",
     "react-native-table-component": "^1.1.8",
     "react-native-webview-leaflet": "^4.0.56",
     "tcomb-form-native": "^0.6.20"
