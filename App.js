@@ -268,18 +268,155 @@ export default class App extends Component {
 
     if (self.state.loadingInProcess === true){
       return (
+
         <ImageBackground
                  source={require('./assets/affair-anniversary-beach.png')}
                  style={styles.backgroundStyle}
                  >
 
-      
+        <View style={styles.container}>
+        {
+     this.state.fontLoaded ? (
 
-        <WebView
-         source={{html: '<iframe width="500" height="500" src="https://lottiefiles.com/iframe/197-glow-loading" frameborder="0" allowfullscreen></iframe>'}}
-        />
+       <View>
+       <Text style={{ fontFamily: 'Raleway-Regular', paddingBottom: '7.5%', fontSize: 45, fontWeight: '400', textAlign: 'center',  color: "white"}}>
+         Weather2Wed
+       </Text>
+       </View>
+     ) : null
+   }
+          <View style={{paddingBottom: '10%'}}>
+          <TextInput
+        style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
+        onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
+        value={this.state.searchedLocation} placeholder='Where? Place or postcode' placeholderTextColor='white'
+        underlineColorAndroid='transparent'
+      />
 
-        </ImageBackground>
+          </View>
+
+          <View style={{ width: '100%', height: '50%', alignItems: 'center'}}>
+          <CircleSlider style={{position: 'relative', top: '10%', paddingTop: '100%'}}
+        arcDirection={'CW'}
+              backgroundColor={"white"}
+              value={0}
+              btnRadius={10}
+              btnColor={'#24b599'}
+              sliderRadius={110}
+              sliderWidth={17.5}
+              startDegree={0}
+              maxValue={370.069444444}
+              onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
+              onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
+              onValueChange={val => this.setState({ dateSelected: val })}
+              onSlidingComplete={val => this.getVal(val)}
+              endGradient={"#A6FFCB"}
+              startGradient={"#12D8FA"}
+              showValue={'true'}
+              textColor={'black'}
+              textSize={20}
+      />
+      <Text style={{fontSize: 25, fontWeight: 'normal', color: "white", textShadowColor: '#103356', textShadowOffset: {width: -2.5, height: 2.5}, textShadowRadius: 10}}>
+      {`${this.convertSecondsToCalendarDate()}`}
+      </Text>
+      </View>
+
+          <View style={styles.buttonContainer}>
+          <TouchableOpacity
+          style={styles.button}
+          onPress={this.processSubmit}>
+          <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 100, width: 100 }}/>
+          </TouchableOpacity>
+        </View>
+
+          <Modal
+          isVisible={this.state.isModalVisible}
+          style={styles.modalContainer}
+          >
+            <TouchableOpacity onPress={this.toggleModal} style={{ height: 22}}>
+              <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
+            </TouchableOpacity>
+
+            <View style={{flex: 1, backgroundColor: 'transparent'}}>
+
+            <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
+          {
+            this.state.weather ? (
+                 <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: '{this.state.weather.hourly.summary}'</Text>
+            ) :   <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
+          }
+
+            </View>
+
+          {
+       this.state.weather ? (
+         <View style={styles.resultsWrapper}>
+
+         <ScrollView>
+
+         <View style={styles.weatherItem}>
+
+         <Image source={ this.getImage(this.state.icon) } style={{width: 75, height: 75}}/>
+
+         <Text style={styles.weatherItemText}> Average temp: { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C</Text>
+
+         </View>
+
+         <View style={styles.weatherItem}>
+         <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
+         </View>
+
+         <View style={styles.weatherItem}>
+         <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
+         </View>
+
+         <View style={styles.weatherItem}>
+         <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}>Moon phase: {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+         </View>
+
+         <View style={styles.weatherItem}>
+         <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureLow)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureHigh)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
+         </View>
+
+         <View style={styles.weatherItem}>
+         <Image source={require('./assets/icons/humidity.jpg')} style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}>Humidity: { this.state.weather.daily.data[0].humidity*100 }%</Text>
+         </View>
+
+         <View style={styles.weatherItem}>
+         <Image source={require('./assets/icons/wind-speed.png')} style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
+         </View>
+
+         <View style={styles.lastWeatherItem}>
+         <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
+         </View>
+
+         </ScrollView>
+
+         </View>
+
+       ) : <Text> </Text>
+     }
+
+     <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
+     <View style={{justifyContent: 'center'}}>
+       <Image source={require('./assets/darksky.png')} style={{ height: 33.98509187, width: 150, marginLeft: 75 }}/>
+     </View>
+     </TouchableOpacity>
+
+            </View>
+
+          </Modal>
+
+        </View>
+      </ImageBackground>
+
       )
 
     }
