@@ -616,6 +616,7 @@ export default class App extends Component {
             this.state.weather ? (
 
                 <Modal  isVisible={this.state.isModalVisible}
+                style={styles.modal}
 
                 >
 
@@ -629,7 +630,7 @@ export default class App extends Component {
                     left: 0,
                     right: 0,
                     top: 0,
-                    height: '100%',
+                    height: '100%'
                   }}
                 >
 
@@ -647,9 +648,10 @@ export default class App extends Component {
 
 
               <View style={styles.weatherSummaryItem}>
-              <Image source={ this.getImage(this.state.icon) } style={{width: 100, height: 100}}/>
-                 <Text style={styles.weatherHeadingText}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
-                 <Text style={styles.weatherHeadingText}> '{this.state.weather.hourly.summary}'</Text>
+
+                 <Text style={styles.weatherHeadingText}>"{this.state.searchedLocation}" on {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
+                 <Image source={ this.getImage(this.state.icon) } style={{width: 125, height: 125, paddingBottom: 10}}/>
+                 <Text style={styles.weatherHeadingSummaryText}>"{this.state.weather.hourly.summary}"</Text>
 
                 </View>
 
@@ -765,7 +767,10 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   weatherSummaryItem: {
-    justifyContent: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: 'white'
   },
   weatherItem: {
     flex: 1,
@@ -789,20 +794,35 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     paddingLeft: 25,
-    fontSize: 18
+    fontSize: 18,
+    color: 'white'
   },
   weatherSummaryText: {
     flex: 1,
     flexWrap: 'wrap',
     paddingLeft: 25,
-    fontSize: 18
+    fontSize: 18,
+    color: 'white'
   },
   weatherHeadingText: {
     flexWrap: 'wrap',
-    paddingLeft: 25,
+    paddingLeft: 15,
     fontSize: 18,
     marginBottom: 0,
-    paddingBottom: 7
+    paddingBottom: 7,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  weatherHeadingSummaryText: {
+    flexWrap: 'wrap',
+    paddingLeft: 15,
+    fontSize: 18,
+    marginBottom: 0,
+    paddingBottom: 7,
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    color: 'white',
+    paddingTop: 8
   },
   innerModal: {
     backgroundColor: 'pink',
@@ -834,5 +854,9 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0
+  },
+  modal: {
+    borderWidth: 0,
+    borderRadius: 10
   }
 });
