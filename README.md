@@ -22,13 +22,11 @@ from here, enter 'adb reboot' to reboot the virtual device - this needs to be do
 
 
 2 - install Open Gapps package
-(from https://docs.genymotion.com/latest/Content/03_Virtual_Devices/Emulating_sensors_and_features/OpenGApps.htm?Highlight=opengapps)
-go to
 
-Visit opengapps.org.
+go to 'opengapps.org'
 Select platform x86.
 Select the Android version corresponding to your virtual device. (7.0 for my instance)
-Select pico.
+Select <b>pico</b>.
 Download the selected Open GApps package.
 Drag and drop the installer in the new Genymotion virtual device.
 Follow the installation instructions.
