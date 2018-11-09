@@ -609,41 +609,40 @@ export default class App extends Component {
         </TouchableOpacity>
       </View>
 
-      {/* Modal View element begins here */}
 
-
-
-        <Modal
-        isVisible={this.state.isModalVisible}
-
-        >
-
-
-        <LinearGradient
-          colors={['#A6FFCB', '#12D8FA']}
-          style={{
-            position: 'absolute',
-            left: 0,
-            right: 0,
-            top: 0,
-            height: 300,
-          }}
-        />
-
-
-
-
-          {/* Exit cross element begins here */}
-
-          <TouchableOpacity onPress={this.toggleModal} style={{ height: 22}}>
-            <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
-          </TouchableOpacity>
-
-          {/* Exit cross element ends here */}
 
 
           {
             this.state.weather ? (
+
+                <Modal  isVisible={this.state.isModalVisible}
+        
+                >
+
+                <View style={styles.innerModal}>
+
+
+                <LinearGradient
+                  colors={['#A6FFCB', '#12D8FA']}
+                  style={{
+                    position: 'absolute',
+                    left: 0,
+                    right: 0,
+                    top: 0,
+                    height: 300,
+                  }}
+                >
+
+
+
+
+                  {/* Exit cross element begins here */}
+
+                  <TouchableOpacity onPress={this.toggleModal} style={{ height: 22}}>
+                    <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
+                  </TouchableOpacity>
+
+                  {/* Exit cross element ends here */}
 
 
               <View style={styles.weatherHeadingStyle}>
@@ -656,100 +655,99 @@ export default class App extends Component {
 
                      </View>
 
+                     <View style={styles.resultsWrapper}>
+
+                     <ScrollView>
+
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} ({this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getDate() - 1}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getMonth() + 1}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getFullYear()})</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureLow)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureHigh)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/humidity.jpg')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Humidity: { this.state.weather.daily.data[0].humidity*100 }%</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/wind-speed.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
+                     </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
+                     </View>
+
+                     <View style={styles.lastWeatherItem}>
+                      <MapView style={styles.map}
+                      scrollEnabled={false}
+                      toolbarEnabled={false}
+                      zoomEnabled={true}
+                      zoomControlEnabled={true}
+                      region={{
+                        latitude: self.state.position[0],
+                        longitude: self.state.position[1],
+                        latitudeDelta: 1,
+                        longitudeDelta: 1
+                      }}
+                      >
+
+                      <MapView.Marker
+                        coordinate={{
+                          latitude: self.state.position[0],
+                          longitude: self.state.position[1]
+                        }}
+                        title={'You searched:'}
+                        description={`'${this.state.searchedLocation}'`}
+                        />
+
+                      </MapView>
+
+                     </View>
+
+                     </ScrollView>
+
+                     </View>
+
+
+
+
+
+                     <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
+                     <View style={{justifyContent: 'center'}}>
+                       <Image source={require('./assets/darksky.png')} style={{ height: 33.98509187, width: 150, marginLeft: 75 }}/>
+                     </View>
+                     </TouchableOpacity>
+
+                        </LinearGradient>
+
+                           </View>
+
+                    </Modal>
+
 
             ) :
 
             <View>
             </View>
           }
-
-
-        {
-     this.state.weather ? (
-
-       <View style={styles.resultsWrapper}>
-
-       <ScrollView>
-
-
-       <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
-       </View>
-
-       <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
-       </View>
-
-       <View style={styles.weatherItem}>
-       <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} ({this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getDate() - 1}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getMonth() + 1}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getFullYear()})</Text>
-       </View>
-
-       <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureLow)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureHigh)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
-       </View>
-
-       <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/humidity.jpg')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>Humidity: { this.state.weather.daily.data[0].humidity*100 }%</Text>
-       </View>
-
-       <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/wind-speed.png')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
-       </View>
-
-       <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
-       </View>
-
-       <View style={styles.lastWeatherItem}>
-        <MapView style={styles.map}
-        scrollEnabled={false}
-        toolbarEnabled={false}
-        zoomEnabled={true}
-        zoomControlEnabled={true}
-        region={{
-          latitude: self.state.position[0],
-          longitude: self.state.position[1],
-          latitudeDelta: 1,
-          longitudeDelta: 1
-        }}
-        >
-
-        <MapView.Marker
-          coordinate={{
-            latitude: self.state.position[0],
-            longitude: self.state.position[1]
-          }}
-          title={'You searched:'}
-          description={`'${this.state.searchedLocation}'`}
-          />
-
-        </MapView>
-
-       </View>
-
-       </ScrollView>
-
-       </View>
-
-     ) : <Text> </Text>
-   }
-
-   <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
-   <View style={{justifyContent: 'center'}}>
-     <Image source={require('./assets/darksky.png')} style={{ height: 33.98509187, width: 150, marginLeft: 75 }}/>
-   </View>
-   </TouchableOpacity>
-
-        </Modal>
-
-        {/* Modal View element ends here */}
 
       </View>
     </ImageBackground>
@@ -830,14 +828,6 @@ const styles = StyleSheet.create({
     top: '20%',
     height: '100%',
     width: '50%'
-  },
-  modalViewContainer: {
-    flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'column',
-    padding: 5,
-    borderRadius: 25,
-    height: 500
   },
   map: {
     position: 'absolute',
