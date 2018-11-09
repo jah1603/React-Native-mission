@@ -130,13 +130,10 @@ export default class App extends Component {
 
   moonPhase(){
 
+    console.log("DATE", this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)));
     return SunCalc.getMoonIllumination(this.moonPhaseDate(this.dateForRequest(this.state.dateSelected))).phase;
   }
 
-  moonPhaseDateTreatment(userDate){
-
-
-  }
 
   convertMoonPhaseNumberToName(moonPhaseNumber) {
 
@@ -150,16 +147,16 @@ export default class App extends Component {
   else if(moonPhaseNumber <= 0.255 && moonPhaseNumber > 0.245){
     var moonPhaseName = 'First quarter moon'
   }
-  else if(moonPhaseNumber > 0.49 && moonPhaseNumber <= 0.51){
+  else if(moonPhaseNumber > 0.475 && moonPhaseNumber < 0.525){
     var moonPhaseName = 'Full moon'
   }
-  else if(moonPhaseNumber <= 0.49 && moonPhaseNumber > 0.255){
+  else if(moonPhaseNumber <= 0.475 && moonPhaseNumber > 0.255){
     var moonPhaseName = 'Waxing gibbous moon'
   }
   else if(moonPhaseNumber <= 0.755 && moonPhaseNumber > 0.745){
     var moonPhaseName = 'Last quarter moon'
   }
-  else if(moonPhaseNumber <= 0.755 && moonPhaseNumber >= 0.51 ){
+  else if(moonPhaseNumber <= 0.745 && moonPhaseNumber >= 0.525 ){
     var moonPhaseName = 'Waning gibbous moon'
   }
   else{
@@ -197,16 +194,16 @@ export default class App extends Component {
   else if(moonPhaseNumber <= 0.255 && moonPhaseNumber > 0.245){
     var moonPhaseName = 'first_quarter.jpg'
   }
-  else if(moonPhaseNumber > 0.49 && moonPhaseNumber <= 0.51){
+  else if(moonPhaseNumber > 0.475 && moonPhaseNumber < 0.525){
     var moonPhaseName = 'full_moon.jpg'
   }
-  else if(moonPhaseNumber <= 0.49 && moonPhaseNumber > 0.255){
+  else if(moonPhaseNumber <= 0.475 && moonPhaseNumber > 0.255){
     var moonPhaseName = 'waxing_gibbous.jpg'
   }
   else if(moonPhaseNumber <= 0.755 && moonPhaseNumber > 0.745){
     var moonPhaseName = 'last_quarter.jpg'
   }
-  else if(moonPhaseNumber <= 0.755 && moonPhaseNumber >= 0.51 ){
+  else if(moonPhaseNumber <= 0.755 && moonPhaseNumber >= 0.525 ){
     var moonPhaseName = 'waning_gibbous.jpg'
   }
   else{
@@ -261,8 +258,26 @@ export default class App extends Component {
       return seconds + 1483228800;
     }
 
-    moonPhaseDate(date){
-      return new Date(date*1000)
+    moonPhaseDate(searchedDate){
+      var now = new Date(Date.now());
+      var theirDate = new Date();
+      var dateSearched = new Date((searchedDate + 86400) * 1000);
+
+
+
+      theirDate.setMonth(dateSearched.getMonth());
+      theirDate.setDate(dateSearched.getDate());
+      theirDate.setFullYear(now.getFullYear());
+
+      if (theirDate.getMonth() >= now.getMonth()){
+        return theirDate;
+      }
+
+      else {
+        theirDate.setFullYear((now.getFullYear()) + 1);
+        return theirDate;
+      }
+
     }
 
 
@@ -477,7 +492,7 @@ export default class App extends Component {
 
          <View style={styles.weatherItem}>
          <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
-         <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} (estimate)</Text>
+         <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} ({this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getDate()}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getMonth()}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getFullYear()})</Text>
          </View>
 
          <View style={styles.weatherItem}>
@@ -632,7 +647,7 @@ export default class App extends Component {
 
        <View style={styles.weatherItem}>
        <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} (estimate)</Text>
+       <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} ({this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getDate() - 1}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getMonth() + 1}/{this.moonPhaseDate(this.dateForRequest(this.state.dateSelected)).getFullYear()})</Text>
        </View>
 
        <View style={styles.weatherItem}>
