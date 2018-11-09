@@ -129,7 +129,8 @@ export default class App extends Component {
   }
 
   moonPhase(){
-    return SunCalc.getMoonIllumination(this.state.dateSelected).phase;
+
+    return SunCalc.getMoonIllumination(this.moonPhaseDate(this.dateForRequest(this.state.dateSelected))).phase;
   }
 
   moonPhaseDateTreatment(userDate){
@@ -137,29 +138,28 @@ export default class App extends Component {
 
   }
 
-  convertMoonPhaseNumberToName(weddingDate) {
+  convertMoonPhaseNumberToName(moonPhaseNumber) {
 
-  var moonPhaseNumber = this.calculateMoonPhase(weddingDate);
 
-  if (moonPhaseNumber == 0){
+  if (moonPhaseNumber <= 0.01 && moonPhaseNumber >= 0){
     var moonPhaseName = 'New moon'
   }
-  else if(moonPhaseNumber <= 0.167 && moonPhaseNumber > 0){
+  else if(moonPhaseNumber <= 0.245 && moonPhaseNumber > 0.01){
     var moonPhaseName = 'Waxing crescent moon'
   }
-  else if(moonPhaseNumber <= 0.33 && moonPhaseNumber > 0.167){
+  else if(moonPhaseNumber <= 0.255 && moonPhaseNumber > 0.245){
     var moonPhaseName = 'First quarter moon'
   }
-  else if(moonPhaseNumber >= 0.49 && moonPhaseNumber <= 0.51){
+  else if(moonPhaseNumber > 0.49 && moonPhaseNumber <= 0.51){
     var moonPhaseName = 'Full moon'
   }
-  else if(moonPhaseNumber <= 0.667 && moonPhaseNumber > 0.51){
+  else if(moonPhaseNumber <= 0.49 && moonPhaseNumber > 0.255){
     var moonPhaseName = 'Waxing gibbous moon'
   }
-  else if(moonPhaseNumber <= 0.833 && moonPhaseNumber > 0.667){
+  else if(moonPhaseNumber <= 0.755 && moonPhaseNumber > 0.745){
     var moonPhaseName = 'Last quarter moon'
   }
-  else if(moonPhaseNumber < 1 && moonPhaseNumber >= 0.833 ){
+  else if(moonPhaseNumber <= 0.755 && moonPhaseNumber >= 0.51 ){
     var moonPhaseName = 'Waning gibbous moon'
   }
   else{
@@ -169,29 +169,29 @@ export default class App extends Component {
 };
 
 
-  convertMoonPhaseNumberToImageName(weddingDate) {
+  convertMoonPhaseNumberToImageName(moonPhaseNumber) {
 
   var moonPhaseNumber = this.calculateMoonPhase(weddingDate);
 
-  if (moonPhaseNumber == 0){
+  if (moonPhaseNumber <= 0.01 && moonPhaseNumber >= 0){
     var moonPhaseName = 'new_moon.jpg'
   }
-  else if(moonPhaseNumber <= 0.167 && moonPhaseNumber > 0){
+  else if(moonPhaseNumber <= 0.245 && moonPhaseNumber > 0.01){
     var moonPhaseName = 'waxing_crescent.jpg'
   }
-  else if(moonPhaseNumber <= 0.33 && moonPhaseNumber > 0.167){
+  else if(moonPhaseNumber <= 0.255 && moonPhaseNumber > 0.245){
     var moonPhaseName = 'first_quarter.jpg'
   }
-  else if(moonPhaseNumber >= 0.49 && moonPhaseNumber <= 0.51){
+  else if(moonPhaseNumber > 0.49 && moonPhaseNumber <= 0.51){
     var moonPhaseName = 'full_moon.jpg'
   }
-  else if(moonPhaseNumber <= 0.667 && moonPhaseNumber > 0.51){
+  else if(moonPhaseNumber <= 0.49 && moonPhaseNumber > 0.255){
     var moonPhaseName = 'waxing_gibbous.jpg'
   }
-  else if(moonPhaseNumber <= 0.833 && moonPhaseNumber > 0.667){
+  else if(moonPhaseNumber <= 0.755 && moonPhaseNumber > 0.745){
     var moonPhaseName = 'last_quarter.jpg'
   }
-  else if(moonPhaseNumber < 1 && moonPhaseNumber >= 0.833 ){
+  else if(moonPhaseNumber <= 0.755 && moonPhaseNumber >= 0.51 ){
     var moonPhaseName = 'waning_gibbous.jpg'
   }
   else{
@@ -244,6 +244,10 @@ export default class App extends Component {
       var seconds = fractionOfYear * secondsInAYear;
 
       return seconds + 1483228800;
+    }
+
+    moonPhaseDate(date){
+      return new Date(date*1000)
     }
 
 
@@ -458,7 +462,7 @@ export default class App extends Component {
 
          <View style={styles.weatherItem}>
          <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: 75, height: 75}}/>
-         <Text style={styles.weatherItemText}>Moon phase: {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+         <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())}: {this.moonPhase()}</Text>
          </View>
 
          <View style={styles.weatherItem}>
@@ -613,7 +617,7 @@ export default class App extends Component {
 
        <View style={styles.weatherItem}>
        <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>Moon phase: {this.state.weather.hourly.data[0].apparentTemperature}</Text>
+       <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())}: {this.moonPhase()}</Text>
        </View>
 
        <View style={styles.weatherItem}>
