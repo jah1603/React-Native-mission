@@ -169,9 +169,24 @@ export default class App extends Component {
 };
 
 
-  convertMoonPhaseNumberToImageName(moonPhaseNumber) {
+  moonPhaseImage(phaseImageName){
 
-  var moonPhaseNumber = this.calculateMoonPhase(weddingDate);
+    switch(phaseImageName) {
+
+    case "new_moon.jpg": return require("./assets/icons/new_moon.jpg");
+    case "waxing_crescent.jpg": return require("./assets/icons/waxing_crescent.jpg");
+    case "first_quarter.jpg": return require("./assets/icons/first_quarter.jpg");
+    case "full_moon.jpg": return require("./assets/icons/full_moon.jpg");
+    case "waxing_gibbous.jpg": return require("./assets/icons/waxing_gibbous.jpg");
+    case "last_quarter.jpg": return require("./assets/icons/last_quarter.jpg");
+    case "waning_gibbous.jpg": return require("./assets/icons/waning_gibbous.jpg");
+    case "waning_crescent.jpg": return require("./assets/icons/waning_crescent.jpg");
+
+  }
+
+  }
+
+  convertMoonPhaseNumberToImageName(moonPhaseNumber) {
 
   if (moonPhaseNumber <= 0.01 && moonPhaseNumber >= 0){
     var moonPhaseName = 'new_moon.jpg'
@@ -461,8 +476,8 @@ export default class App extends Component {
          </View>
 
          <View style={styles.weatherItem}>
-         <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: 75, height: 75}}/>
-         <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())}: {this.moonPhase()}</Text>
+         <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
+         <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} (estimate)</Text>
          </View>
 
          <View style={styles.weatherItem}>
@@ -616,8 +631,8 @@ export default class App extends Component {
        </View>
 
        <View style={styles.weatherItem}>
-       <Image source={require('./assets/icons/waning_gibbous.jpg')} style={{width: 75, height: 75}}/>
-       <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())}: {this.moonPhase()}</Text>
+       <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
+       <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} (estimate)</Text>
        </View>
 
        <View style={styles.weatherItem}>
