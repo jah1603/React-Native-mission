@@ -691,7 +691,8 @@ export default class App extends Component {
                      <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
                      </View>
 
-                     <View style={styles.lastWeatherItem}>
+                      <View style={{height: 500, width: '90%',
+                        marginLeft: '5%'}}>
                       <MapView style={styles.map}
                       scrollEnabled={false}
                       toolbarEnabled={false}
@@ -715,8 +716,9 @@ export default class App extends Component {
                         />
 
                       </MapView>
+                      </View>
 
-                     </View>
+
 
                      </ScrollView>
 
@@ -799,7 +801,8 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     paddingLeft: 25,
     fontSize: 18,
-    marginBottom: 0
+    marginBottom: 0,
+    paddingBottom: 7
   },
   innerModal: {
     backgroundColor: 'pink',
@@ -825,6 +828,8 @@ const styles = StyleSheet.create({
   map: {
     position: 'absolute',
     borderRadius: 10,
+    borderWidth: 1,
+    borderColor: 'transparent',
     top: 0,
     left: 0,
     bottom: 0,
