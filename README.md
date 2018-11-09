@@ -12,11 +12,15 @@ react-native start
 
 <b>Google app functionality in emulation</b>
 
-1- https://androidfilehost.com/?fid=23252070760974384 download the ARM installation zip
-run the emulated device - used android version 7.0.
+
+1-download the ARM installation zip from: https://androidfilehost.com/?fid=23252070760974384
+Run the emulated device - I used android version 7.0.
+
 Drag the zip file over the emulator window , follow the prompts.
-open a new terminal and go to the directory /Users/{yourUserName}/Library/Android/sdk/platform-tools
-enter 'adb reboot' to reboot the virtual device - this needs to be done after each installation
+open a new terminal and go to the directory ''/Users/{yourUserName}/Library/Android/sdk/platform-tools'
+from here, enter 'adb reboot' to reboot the virtual device - this needs to be done after each installation
+
+
 2 - install Open Gapps package
 (from https://docs.genymotion.com/latest/Content/03_Virtual_Devices/Emulating_sensors_and_features/OpenGApps.htm?Highlight=opengapps)
 go to
