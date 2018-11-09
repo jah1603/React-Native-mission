@@ -32,10 +32,10 @@ Drag and drop the installer in the new Genymotion virtual device.
 Follow the installation instructions.
 run adb reboot again (from /Users/{yourUserName}/Library/Android/sdk/platform-tools)
 
-3) update google app services
+3 - update Google app services
 according to the answer here: https://stackoverflow.com/questions/20121883/how-to-install-google-play-services-in-a-genymotion-vm-with-no-drag-and-drop-su
 google apps may crash so you need to update it within the device to newest version.
-in the virtual device - search for 'Google Play Services' and the top link (or near) should take you tot he google apps update page with a link to download. IU found this link unresponsive on click. I"m not sure if it downloaded anything for me.
+in the virtual device - search for 'Google Play Services' and the top link (or near) should take you tot he google apps update page with a link to download. I found this link unresponsive on click. I'm not sure if it downloaded anything for me.
 Running the app after all this the map displays!
 
 <b>Miscellaneous:</b>
