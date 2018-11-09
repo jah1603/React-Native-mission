@@ -542,7 +542,7 @@ else if (date == 23) {
 
          <View style={styles.weatherItem}>
          <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
-         <Text style={styles.weatherItemText}> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
+         <Text style={styles.weatherItemText}>Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) } Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
          </View>
 
          <View style={styles.weatherItem}>
@@ -712,7 +712,7 @@ else if (date == 23) {
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}> Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) }, Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
+                     <Text style={styles.weatherItemText}>Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) } Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
