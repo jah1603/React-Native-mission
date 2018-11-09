@@ -609,45 +609,53 @@ export default class App extends Component {
         </TouchableOpacity>
       </View>
 
+      {/* Modal View element begins here */}
+
         <Modal
         isVisible={this.state.isModalVisible}
         style={styles.modalContainer}
         >
+
+          {/* Exit cross element begins here */}
+
           <TouchableOpacity onPress={this.toggleModal} style={{ height: 22}}>
             <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
           </TouchableOpacity>
 
-          <View style={{flex: 1, backgroundColor: 'transparent'}}>
+          {/* Exit cross element ends here */}
 
-          <View style={{backgroundColor: '#24b599', flex: 1, justifyContent: 'center', flexDirection: 'row', borderRightWidth: 1, borderLeftWidth: 1, borderColor: "#24b599", padding: 15, borderTopRightRadius: 5, borderTopLeftRadius: 5, height: 200}}>
+
           {
             this.state.weather ? (
-              <View style={styles.weatherItem}>
-              <Image source={ this.getImage(this.state.icon) } style={{width: 130, height: 130}}/>
-                 <Text style={styles.weatherItemText}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
-                </View>
-            ) :
-            <View style={styles.weatherItem}>
-            <Image source={ this.getImage(this.state.icon) } style={{width: 130, height: 130}}/>
 
-            <Text style={{color: 'white', padding: 5, fontSize: 20}}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
+
+
+              <View style={styles.weatherSummaryItem}>
+              <Image source={ this.getImage(this.state.icon) } style={{width: 75, height: 75}}/>
+                 <Text style={styles.weatherHeadingText}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
+                </View>
+
+
+            ) :
+
+            <View>
             </View>
           }
 
-          </View>
 
         {
      this.state.weather ? (
+
        <View style={styles.resultsWrapper}>
-
-       <ScrollView>
-
 
        <View style={styles.weatherItem}>
 
        <Text style={styles.weatherItemText}> '{this.state.weather.hourly.summary}'</Text>
 
        </View>
+
+       <ScrollView style={{backgroundColor: 'blue'}}>
+
 
        <View style={styles.weatherItem}>
        <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
@@ -708,6 +716,7 @@ export default class App extends Component {
           />
 
         </MapView>
+
        </View>
 
        </ScrollView>
@@ -723,9 +732,11 @@ export default class App extends Component {
    </View>
    </TouchableOpacity>
 
-          </View>
+
 
         </Modal>
+
+        {/* Modal View element ends here */}
 
       </View>
     </ImageBackground>
@@ -748,7 +759,14 @@ const styles = StyleSheet.create({
   resultsWrapper: {
     flex: 1,
     justifyContent: 'space-between',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    backgroundColor: 'yellow'
+  },
+  weatherSummaryItem: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    backgroundColor: 'pink'
   },
   weatherItem: {
     flex: 1,
@@ -777,6 +795,12 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     paddingLeft: 25,
     fontSize: 18
+  },
+  weatherHeadingText: {
+    flexWrap: 'wrap',
+    paddingLeft: 25,
+    fontSize: 18,
+    marginBottom: 0
   },
   buttonContainer: {
     alignItems: 'center',
@@ -807,8 +831,5 @@ const styles = StyleSheet.create({
     left: 0,
     bottom: 0,
     right: 0
-  },
-  tableContainer: { flex: 1, padding: 16, paddingTop: 30, backgroundColor: '#fff' },
-  tableHead: { height: 40, backgroundColor: '#24b599' },
-  tableText: { margin: 6 }
+  }
 });
