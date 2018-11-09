@@ -616,10 +616,10 @@ export default class App extends Component {
             this.state.weather ? (
 
                 <Modal  isVisible={this.state.isModalVisible}
-        
+
                 >
 
-                <View style={styles.innerModal}>
+
 
 
                 <LinearGradient
@@ -629,7 +629,7 @@ export default class App extends Component {
                     left: 0,
                     right: 0,
                     top: 0,
-                    height: 300,
+                    height: '100%',
                   }}
                 >
 
@@ -645,20 +645,16 @@ export default class App extends Component {
                   {/* Exit cross element ends here */}
 
 
-              <View style={styles.weatherHeadingStyle}>
+
               <View style={styles.weatherSummaryItem}>
               <Image source={ this.getImage(this.state.icon) } style={{width: 100, height: 100}}/>
                  <Text style={styles.weatherHeadingText}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
+                 <Text style={styles.weatherHeadingText}> '{this.state.weather.hourly.summary}'</Text>
+
                 </View>
 
-                     <Text style={styles.weatherSummaryText}> '{this.state.weather.hourly.summary}'</Text>
-
-                     </View>
-
-                     <View style={styles.resultsWrapper}>
 
                      <ScrollView>
-
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
@@ -724,11 +720,6 @@ export default class App extends Component {
 
                      </ScrollView>
 
-                     </View>
-
-
-
-
 
                      <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
                      <View style={{justifyContent: 'center'}}>
@@ -738,10 +729,9 @@ export default class App extends Component {
 
                         </LinearGradient>
 
-                           </View>
+
 
                     </Modal>
-
 
             ) :
 
@@ -773,9 +763,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column'
   },
   weatherSummaryItem: {
-    flex: 1,
-    justifyContent: 'center',
-    flexDirection: 'row'
+    justifyContent: 'center'
   },
   weatherItem: {
     flex: 1,
@@ -813,7 +801,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 0
   },
-
+  innerModal: {
+    backgroundColor: 'pink',
+    height: '100%',
+    borderWidth: 1,
+    borderRadius: 15
+  },
   buttonContainer: {
     alignItems: 'center',
     height: '25%'
