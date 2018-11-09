@@ -119,11 +119,35 @@ export default class App extends Component {
     var month = months[dateToDisplay.getMonth()];
     var date = dateToDisplay.getDate();
 
+    if (date == 3) {
+   var formattedDate = `${date}rd`
+} else if (date == 2) {
+   var formattedDate = `${date}nd`
+}
+else if (date == 1) {
+   var formattedDate = `${date}st`
+}
+else if (date == 21) {
+   var formattedDate = `${date}st`
+}
+else if (date == 31) {
+   var formattedDate = `${date}st`
+}
+else if (date == 22) {
+   var formattedDate = `${date}nd`
+}
+else if (date == 23) {
+   var formattedDate = `${date}rd`
+}
+ else {
+   var formattedDate = `${date}th`
+}
+
     if (!this.state.dateSelected){
       return 'Slide to select date'
     }
     else {
-      return `${date} ${month}`;
+      return `${formattedDate} ${month}`;
     }
   }
 
@@ -221,11 +245,35 @@ export default class App extends Component {
     var month = months[dateToDisplay.getMonth()];
     var date = dateToDisplay.getDate();
 
+    if (date == 3) {
+   var formattedDate = `${date}rd`
+} else if (date == 2) {
+   var formattedDate = `${date}nd`
+}
+else if (date == 1) {
+   var formattedDate = `${date}st`
+}
+else if (date == 21) {
+   var formattedDate = `${date}st`
+}
+else if (date == 31) {
+   var formattedDate = `${date}st`
+}
+else if (date == 22) {
+   var formattedDate = `${date}nd`
+}
+else if (date == 23) {
+   var formattedDate = `${date}rd`
+}
+ else {
+   var formattedDate = `${date}th`
+}
+
     if (!this.state.dateSelected){
-      return '1 January';
+      return '1st January';
     }
     else {
-      return `${date} ${month}`;
+      return `${formattedDate} ${month}`;
     }
   }
 
