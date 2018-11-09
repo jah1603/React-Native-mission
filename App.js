@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 import {Table, TableWrapper, Row, Rows, Col, Cols, Cell } from 'react-native-table-component';
 import FitImage from 'react-native-fit-image';
 import Carousel from 'react-native-snap-carousel';
-import { Font} from 'expo';
+import { Font, LinearGradient } from 'expo';
 import t from 'tcomb-form-native';
 import key from './google.js';
 import MapView from 'react-native-maps';
@@ -455,7 +455,7 @@ export default class App extends Component {
               <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
             </TouchableOpacity>
 
-            <View style={{flex: 1, backgroundColor: 'transparent'}}>
+            <View style={{flex: 1, backgroundColor: 'pink'}}>
 
             <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
           {
@@ -611,10 +611,27 @@ export default class App extends Component {
 
       {/* Modal View element begins here */}
 
+
+
         <Modal
         isVisible={this.state.isModalVisible}
-        style={styles.modalContainer}
+
         >
+
+
+        <LinearGradient
+          colors={['#A6FFCB', '#12D8FA']}
+          style={{
+            position: 'absolute',
+            left: 0,
+            right: 0,
+            top: 0,
+            height: 300,
+          }}
+        />
+
+
+
 
           {/* Exit cross element begins here */}
 
@@ -629,11 +646,15 @@ export default class App extends Component {
             this.state.weather ? (
 
 
-
+              <View style={styles.weatherHeadingStyle}>
               <View style={styles.weatherSummaryItem}>
-              <Image source={ this.getImage(this.state.icon) } style={{width: 75, height: 75}}/>
+              <Image source={ this.getImage(this.state.icon) } style={{width: 100, height: 100}}/>
                  <Text style={styles.weatherHeadingText}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
                 </View>
+
+                     <Text style={styles.weatherSummaryText}> '{this.state.weather.hourly.summary}'</Text>
+
+                     </View>
 
 
             ) :
@@ -648,13 +669,7 @@ export default class App extends Component {
 
        <View style={styles.resultsWrapper}>
 
-       <View style={styles.weatherItem}>
-
-       <Text style={styles.weatherItemText}> '{this.state.weather.hourly.summary}'</Text>
-
-       </View>
-
-       <ScrollView style={{backgroundColor: 'blue'}}>
+       <ScrollView>
 
 
        <View style={styles.weatherItem}>
@@ -732,8 +747,6 @@ export default class App extends Component {
    </View>
    </TouchableOpacity>
 
-
-
         </Modal>
 
         {/* Modal View element ends here */}
@@ -759,38 +772,38 @@ const styles = StyleSheet.create({
   resultsWrapper: {
     flex: 1,
     justifyContent: 'space-between',
-    flexDirection: 'column',
-    backgroundColor: 'yellow'
+    flexDirection: 'column'
   },
   weatherSummaryItem: {
     flex: 1,
     justifyContent: 'center',
-    flexDirection: 'row',
-    backgroundColor: 'pink'
+    flexDirection: 'row'
   },
   weatherItem: {
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    borderRightWidth: 1,
-    borderLeftWidth: 1,
-    borderColor: "#24b599",
     padding: 15
+  },
+  weatherHeadingStyle: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'column'
   },
   lastWeatherItem: {
     flex: 1,
     justifyContent: 'center',
     flexDirection: 'row',
-    borderRightWidth: 1,
-    borderLeftWidth: 1,
-    borderBottomWidth: 1,
-    borderBottomLeftRadius: 5,
-    borderBottomRightRadius: 5,
-    borderColor: "#24b599",
     padding: 15,
     height: 500
   },
   weatherItemText: {
+    flex: 1,
+    flexWrap: 'wrap',
+    paddingLeft: 25,
+    fontSize: 18
+  },
+  weatherSummaryText: {
     flex: 1,
     flexWrap: 'wrap',
     paddingLeft: 25,
@@ -802,6 +815,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 0
   },
+
   buttonContainer: {
     alignItems: 'center',
     height: '25%'
@@ -817,16 +831,17 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '50%'
   },
-  modalContainer: {
+  modalViewContainer: {
     flex: 1,
     justifyContent: 'space-between',
     flexDirection: 'column',
     padding: 5,
-    backgroundColor: '#24b599',
-    borderRadius: 5
+    borderRadius: 25,
+    height: 500
   },
   map: {
     position: 'absolute',
+    borderRadius: 10,
     top: 0,
     left: 0,
     bottom: 0,
