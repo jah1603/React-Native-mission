@@ -35,6 +35,7 @@
     "react-native-svg": "^8.0.8",
     "react-native-table-component": "^1.1.8",
     "react-native-webview-leaflet": "^4.0.56",
+    "suncalc": "^1.8.0",
     "tcomb-form-native": "^0.6.20"
   }
 }
