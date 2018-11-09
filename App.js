@@ -17,7 +17,6 @@ import SunCalc from 'suncalc';
 import { getWeatherData } from './models/Helper.js';
 import { returnWeatherData } from './models/Helper.js';
 import { Helper } from './models/Helper.js';
-
 import axios from 'axios';
 
 
