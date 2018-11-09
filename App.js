@@ -460,8 +460,16 @@ export default class App extends Component {
             <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
           {
             this.state.weather ? (
-                 <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: '{this.state.weather.hourly.summary}'</Text>
-            ) :   <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
+              <View style={styles.weatherItem}>
+              <Image source={ this.getImage(this.state.icon) } style={{width: 130, height: 130}}/>
+                 <Text style={{color: 'white', padding: 5, fontSize: 20}}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: '{this.state.weather.hourly.summary}'</Text>
+                </View>
+            ) :
+            <View style={styles.weatherItem}>
+            <Image source={ this.getImage(this.state.icon) } style={{width: 130, height: 130}}/>
+
+            <Text style={{color: 'white', padding: 5, fontSize: 20}}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
+            </View>
           }
 
             </View>
@@ -611,12 +619,20 @@ export default class App extends Component {
 
           <View style={{flex: 1, backgroundColor: 'transparent'}}>
 
-          <View style={{backgroundColor: '#24b599', borderTopRightRadius: 5, borderTopLeftRadius: 5}}>
-        {
-          this.state.weather ? (
-               <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: '{this.state.weather.hourly.summary}'</Text>
-          ) :   <Text style={{color: 'white', padding: 5, fontSize: 20}}>Typical weather in '{this.state.searchedLocation}' for {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
-        }
+          <View style={{backgroundColor: '#24b599', flex: 1, justifyContent: 'center', flexDirection: 'row', borderRightWidth: 1, borderLeftWidth: 1, borderColor: "#24b599", padding: 15, borderTopRightRadius: 5, borderTopLeftRadius: 5, height: 200}}>
+          {
+            this.state.weather ? (
+              <View style={styles.weatherItem}>
+              <Image source={ this.getImage(this.state.icon) } style={{width: 130, height: 130}}/>
+                 <Text style={styles.weatherItemText}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
+                </View>
+            ) :
+            <View style={styles.weatherItem}>
+            <Image source={ this.getImage(this.state.icon) } style={{width: 130, height: 130}}/>
+
+            <Text style={{color: 'white', padding: 5, fontSize: 20}}>'{this.state.searchedLocation}', {this.convertSecondsToCalendarDateForOutputText()}: (Hardcoded) Light rain starting in the evening.</Text>
+            </View>
+          }
 
           </View>
 
@@ -629,9 +645,7 @@ export default class App extends Component {
 
        <View style={styles.weatherItem}>
 
-       <Image source={ this.getImage(this.state.icon) } style={{width: 75, height: 75}}/>
-
-       <Text style={styles.weatherItemText}> Average temp: { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C</Text>
+       <Text style={styles.weatherItemText}> '{this.state.weather.hourly.summary}'</Text>
 
        </View>
 
@@ -784,7 +798,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'column',
     padding: 5,
-    backgroundColor: 'white',
+    backgroundColor: '#24b599',
     borderRadius: 5
   },
   map: {
