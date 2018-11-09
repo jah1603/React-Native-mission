@@ -433,7 +433,7 @@ export default class App extends Component {
               textColor={'black'}
               textSize={20}
       />
-      <Text style={{fontSize: 25, fontWeight: 'normal', color: "white", textShadowColor: '#103356', textShadowOffset: {width: -2.5, height: 2.5}, textShadowRadius: 10}}>
+      <Text style={{fontSize: 25, fontWeight: 'normal', color: "white"}}>
       {`${this.convertSecondsToCalendarDate()}`}
       </Text>
       </View>
@@ -595,7 +595,7 @@ export default class App extends Component {
             textColor={'black'}
             textSize={20}
 		/>
-    <Text style={{fontSize: 25, fontWeight: 'normal', color: "white", textShadowColor: '#103356', textShadowOffset: {width: -2.5, height: 2.5}, textShadowRadius: 10}}>
+    <Text style={{fontSize: 25, fontWeight: 'normal', color: "white"}}>
     {`${this.convertSecondsToCalendarDate()}`}
     </Text>
     </View>
@@ -638,8 +638,8 @@ export default class App extends Component {
 
                   {/* Exit cross element begins here */}
 
-                  <TouchableOpacity onPress={this.toggleModal} style={{ height: 22}}>
-                    <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
+                  <TouchableOpacity onPress={this.toggleModal} style={{ height: 25}}>
+                    <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginTop: 3, marginBottom: 10, position: 'relative', left:'93%'}}/>
                   </TouchableOpacity>
 
                   {/* Exit cross element ends here */}
@@ -648,9 +648,9 @@ export default class App extends Component {
 
               <View style={styles.weatherSummaryItem}>
 
-                 <Text style={styles.weatherHeadingText}>"{this.state.searchedLocation}" on {this.convertSecondsToCalendarDateForOutputText()}: Avg { this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C </Text>
+                 <Text style={styles.weatherHeadingText}>{this.convertSecondsToCalendarDateForOutputText()} in "{this.state.searchedLocation}"</Text>
                  <Image source={ this.getImage(this.state.icon) } style={{width: 125, height: 125, paddingBottom: 10}}/>
-                 <Text style={styles.weatherHeadingSummaryText}>"{this.state.weather.hourly.summary}"</Text>
+                 <Text style={styles.weatherHeadingSummaryText}>"{this.state.weather.hourly.summary}" ({ this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C)</Text>
 
                 </View>
 
