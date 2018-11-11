@@ -12,7 +12,17 @@ import t from 'tcomb-form-native';
 import key from './google.js';
 import MapView from 'react-native-maps';
 import SunCalc from 'suncalc';
-
+import {
+  BallIndicator,
+  BarIndicator,
+  DotIndicator,
+  MaterialIndicator,
+  PacmanIndicator,
+  PulseIndicator,
+  SkypeIndicator,
+  UIActivityIndicator,
+  WaveIndicator
+} from 'react-native-indicators';
 
 global.self = global;
 
@@ -529,11 +539,8 @@ else if (date == 23) {
       </View>
 
           <View style={styles.buttonContainer}>
-          <ActivityIndicator size="large" color="#24b599" />
-          <TouchableOpacity
-          style={styles.button}>
-          <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 100, width: 100 }}/>
-          </TouchableOpacity>
+          < BarIndicator count={7} size={60} color={'#24b599'}/>
+
           </View>
 
           <Modal
