@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { WebView, View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
-import {ImageBackground} from 'react-native';
+import {ImageBackground,  ActivityIndicator,} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
 import Modal from 'react-native-modal';
@@ -12,6 +12,7 @@ import t from 'tcomb-form-native';
 import key from './google.js';
 import MapView from 'react-native-maps';
 import SunCalc from 'suncalc';
+
 
 global.self = global;
 
@@ -325,7 +326,6 @@ else if (date == 23) {
         theirDate.setFullYear((now.getFullYear()) + 1);
         return theirDate;
       }
-
     }
 
 
@@ -529,12 +529,12 @@ else if (date == 23) {
       </View>
 
           <View style={styles.buttonContainer}>
+          <ActivityIndicator size="large" color="#24b599" />
           <TouchableOpacity
-          style={styles.button}
-          onPress={this.processSubmit}>
-          <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 30, width: 30 }}/>
+          style={styles.button}>
+          <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 100, width: 100 }}/>
           </TouchableOpacity>
-        </View>
+          </View>
 
           <Modal
           isVisible={this.state.isModalVisible}
@@ -921,6 +921,10 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     alignItems: 'center',
+    height: '25%'
+  },
+  loadingIndicator: {
+    marginTop: '10%',
     height: '25%'
   },
   backgroundStyle: {
