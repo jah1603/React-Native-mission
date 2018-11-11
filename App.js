@@ -89,6 +89,7 @@ export default class App extends Component {
    dateSelected: null,
    isModalVisible: false,
    weather: null,
+   second_year_weather: null,
    position: null,
    searchedLocation: null,
    icon: '',
@@ -358,6 +359,22 @@ else if (date == 23) {
           this.setState({
             weather: response.data,
             icon: `${response.data.daily.data[0].icon}`
+          }, function(){this.getSecondYearOfWeatherData(`${self.state.position[0]},${self.state.position[1]}`, (self.dateForRequest(self.state.dateSelected)  + 31536000)) })
+
+    }).catch(function(error){
+      console.log(error);
+      console.log("Error fetching weather data.");
+    })
+    }
+
+    getSecondYearOfWeatherData = function(location, seconds){
+      console.log("API Key", key);
+        const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
+        axios.get(url).then(response => {
+
+          console.log("data", this.data);
+          this.setState({
+            second_year_weather: response.data
           }, function(){this.toggleModal()})
 
     }).catch(function(error){
@@ -424,6 +441,29 @@ else if (date == 23) {
     this.setState({
       searchedLocation: searchedLocation
     })
+  }
+
+  getAverageHumidity(){
+
+  }
+
+  getAverageCloudCover(){
+
+  }
+
+  getAverageWindSpeed(){
+
+  }
+
+  getAveragePrecipitationProbability(){
+    this.state.weather.daily.data[0].precipProbability
+  }
+
+  getAverageHigh(){
+
+  }
+
+  getAverageLow(){
 
   }
 
