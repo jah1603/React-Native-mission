@@ -444,7 +444,7 @@ else if (date == 23) {
   }
 
   getAverageHumidity(){
-
+    (this.state.weather.daily.data[0].humidity + this.state.second_year_weather.daily.data[0].humidity) / 2
   }
 
   getAverageCloudCover(){
@@ -456,15 +456,15 @@ else if (date == 23) {
   }
 
   getAveragePrecipitationProbability(){
-    this.state.weather.daily.data[0].precipProbability
+    (this.state.weather.daily.data[0].precipProbability + this.state.second_year_weather.daily.data[0].precipProbability) / 2
   }
 
   getAverageHigh(){
-
+    (this.state.weather.daily.data[0].temperatureHigh + this.state.second_year_weather.daily.data[0].temperatureHigh) / 2
   }
 
   getAverageLow(){
-
+    (this.state.weather.daily.data[0].temperatureLow + this.state.second_year_weather.daily.data[0].temperatureLow) / 2
   }
 
   render() {
