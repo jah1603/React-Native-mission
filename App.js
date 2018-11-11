@@ -13,6 +13,8 @@ import key from './google.js';
 import MapView from 'react-native-maps';
 import SunCalc from 'suncalc';
 
+global.self = global;
+
 // const Weather = require('./models/Weather.js');
 import { getWeatherData } from './models/Helper.js';
 import { returnWeatherData } from './models/Helper.js';
@@ -291,8 +293,6 @@ else if (date == 23) {
 
     toggleModal(){
 
-      console.log("ICON", this.state.icon);
-
       this.setState({ loadingInProcess: false }, function(){this.setState({ isModalVisible: !this.state.isModalVisible })});
 
     }
@@ -359,7 +359,7 @@ else if (date == 23) {
           this.setState({
             weather: response.data,
             icon: `${response.data.daily.data[0].icon}`
-          }, function(){this.getSecondYearOfWeatherData(`${self.state.position[0]},${self.state.position[1]}`, (self.dateForRequest(self.state.dateSelected) - 31536000)) })
+          }, function(){this.getSecondYearOfWeatherData(`${this.state.position[0]},${this.state.position[1]}`, (this.dateForRequest(this.state.dateSelected) - 31536000)) })
 
     }).catch(function(error){
       console.log(error);
@@ -442,31 +442,31 @@ else if (date == 23) {
   }
 
   getAverageHumidity(){
-    (this.state.weather.daily.data[0].humidity + this.state.second_year_weather.daily.data[0].humidity) / 2
+    return (this.state.weather.daily.data[0].humidity + this.state.second_year_weather.daily.data[0].humidity) / 2
   }
 
   getAverageCloudCover(){
-    (this.state.weather.daily.data[0].cloudCover + this.state.second_year_weather.daily.data[0].cloudCover) / 2
+    return (this.state.weather.daily.data[0].cloudCover + this.state.second_year_weather.daily.data[0].cloudCover) / 2
   }
 
   getAverageWindSpeed(){
-    (this.state.weather.daily.data[0].windSpeed + this.state.second_year_weather.daily.data[0].windSpeed) / 2
+    return (this.state.weather.daily.data[0].windSpeed + this.state.second_year_weather.daily.data[0].windSpeed) / 2
   }
 
   getAveragePrecipitationProbability(){
-    (this.state.weather.daily.data[0].precipProbability + this.state.second_year_weather.daily.data[0].precipProbability) / 2
+    return (this.state.weather.daily.data[0].precipProbability + this.state.second_year_weather.daily.data[0].precipProbability) / 2
   }
 
   getAverageHigh(){
-    (this.state.weather.daily.data[0].temperatureHigh + this.state.second_year_weather.daily.data[0].temperatureHigh) / 2
+    return (this.state.weather.daily.data[0].temperatureHigh + this.state.second_year_weather.daily.data[0].temperatureHigh) / 2
   }
 
   getAverageLow(){
-    (this.state.weather.daily.data[0].temperatureLow + this.state.second_year_weather.daily.data[0].temperatureLow) / 2
+    return (this.state.weather.daily.data[0].temperatureLow + this.state.second_year_weather.daily.data[0].temperatureLow) / 2
   }
 
   getAverageAverageTemperature(){
-    (this.state.weather.hourly.data[14].temperature + this.state.second_year_weather.hourly.data[14].temperature) / 2
+    return (this.state.weather.hourly.data[14].temperature + this.state.second_year_weather.hourly.data[14].temperature) / 2
   }
 
   render() {
