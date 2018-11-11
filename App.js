@@ -359,7 +359,7 @@ else if (date == 23) {
           this.setState({
             weather: response.data,
             icon: `${response.data.daily.data[0].icon}`
-          }, function(){this.getSecondYearOfWeatherData(`${self.state.position[0]},${self.state.position[1]}`, (self.dateForRequest(self.state.dateSelected)  + 31536000)) })
+          }, function(){this.getSecondYearOfWeatherData(`${self.state.position[0]},${self.state.position[1]}`, (self.dateForRequest(self.state.dateSelected) - 31536000)) })
 
     }).catch(function(error){
       console.log(error);
@@ -409,8 +409,6 @@ else if (date == 23) {
   }
 }
 
-
-
   timeConverterToHours = function (UNIX_timestamp) {
 
   var a = new Date(UNIX_timestamp * 1000);
@@ -448,11 +446,11 @@ else if (date == 23) {
   }
 
   getAverageCloudCover(){
-
+    (this.state.weather.daily.data[0].cloudCover + this.state.second_year_weather.daily.data[0].cloudCover) / 2
   }
 
   getAverageWindSpeed(){
-
+    (this.state.weather.daily.data[0].windSpeed + this.state.second_year_weather.daily.data[0].windSpeed) / 2
   }
 
   getAveragePrecipitationProbability(){
@@ -465,6 +463,10 @@ else if (date == 23) {
 
   getAverageLow(){
     (this.state.weather.daily.data[0].temperatureLow + this.state.second_year_weather.daily.data[0].temperatureLow) / 2
+  }
+
+  getAverageAverageTemperature(){
+    (this.state.weather.hourly.data[14].temperature + this.state.second_year_weather.hourly.data[14].temperature) / 2
   }
 
   render() {
@@ -530,7 +532,7 @@ else if (date == 23) {
           <TouchableOpacity
           style={styles.button}
           onPress={this.processSubmit}>
-          <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 100, width: 100 }}/>
+          <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 30, width: 30 }}/>
           </TouchableOpacity>
         </View>
 
@@ -738,7 +740,7 @@ else if (date == 23) {
 
                  <Text style={styles.weatherHeadingText}>{this.convertSecondsToCalendarDateForOutputText()} in "{this.state.searchedLocation}"</Text>
                  <Image source={ this.getImage(this.state.icon) } style={{width: 125, height: 125, paddingBottom: 10}}/>
-                 <Text style={styles.weatherHeadingSummaryText}>"{this.state.weather.hourly.summary}" ({ this.fahrenheitToCelsius(this.state.weather.hourly.data[14].temperature) }°C)</Text>
+                 <Text style={styles.weatherHeadingSummaryText}>"{this.state.weather.hourly.summary}" ({ this.fahrenheitToCelsius(this.getAverageAverageTemperature()) }°C)</Text>
 
                 </View>
 
@@ -747,7 +749,7 @@ else if (date == 23) {
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/rain_chance.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.state.weather.daily.data[0].precipProbability * 100) }%</Text>
+                     <Text style={styles.weatherItemText}> Chance of rain: { Math.round(this.getAveragePrecipitationProbability() * 100) }%</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
@@ -762,22 +764,22 @@ else if (date == 23) {
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/temperature.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureLow)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.state.weather.daily.data[0].temperatureHigh)}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
+                     <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.getAverageLow())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) }, High: {this.fahrenheitToCelsius(this.getAverageHigh())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
                      </View>
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/humidity.jpg')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Humidity: { this.state.weather.daily.data[0].humidity*100 }%</Text>
+                     <Text style={styles.weatherItemText}>Humidity: { this.getAverageHumidity() * 100 }%</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/wind-speed.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Wind speed: {this.state.weather.daily.data[0].windSpeed} mph</Text>
+                     <Text style={styles.weatherItemText}>Wind speed: {this.getAverageWindSpeed()} mph</Text>
                      </View>
 
                      <View style={styles.weatherItem}>
                      <Image source={require('./assets/icons/clouds.png')} style={{width: 75, height: 75}}/>
-                     <Text style={styles.weatherItemText}>Cloud cover: { this.state.weather.daily.data[0].cloudCover * 100 }%</Text>
+                     <Text style={styles.weatherItemText}>Cloud cover: { this.getAverageCloudCover() * 100 }%</Text>
                      </View>
 
                       <View style={{height: 500, width: '90%',
