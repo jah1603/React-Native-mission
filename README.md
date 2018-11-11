@@ -1,6 +1,15 @@
 # React-native-mission
 React native mission
 
+<b>To run on Android/Apple emulator device:</b>
+
+Apple: Download XCode
+
+Android: Download Android Studio, configure SDK tools and copy file path to clipboard.
+
+Download Genymotion (trial) and Virtual Box. Paste SDK tools link (from clipboard) into the SDK settings in Genymotion. Open the Genymotion shell and start up a mobile phone emulator.
+
+
 <b>Start expo app: </b>
 
 expo start
