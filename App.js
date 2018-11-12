@@ -109,7 +109,8 @@ export default class App extends Component {
    searchedLocation: null,
    icon: '',
    loadingInProcess: null,
-   infoModalVisible: false
+   infoModalVisible: false,
+   hotels: null
  };
 
   // handleSubmit = () => {
@@ -367,6 +368,18 @@ else if (date == 23) {
     })
     }
 
+    getHotels(location){
+      const url = 'http://weather2wed.herokuapp.com/hotel/'+`${this.state.position[0]},${this.state.position[1]}`
+
+      axios.get(url).then((response) => {
+        console.log("HOTELS!!!!!",response.data.response.venues);
+        this.setState({
+          hotels: response.data.response.venues
+        },function(){this.toggleModal()})
+      })
+
+    }
+
 
     getWeatherData = function(location, seconds){
       console.log("API Key", key);
@@ -394,7 +407,7 @@ else if (date == 23) {
           console.log("data", this.data);
           this.setState({
             second_year_weather: response.data
-          }, function(){this.toggleModal()})
+          }, function(){this.getHotels()})
 
     }).catch(function(error){
       console.log(error);
