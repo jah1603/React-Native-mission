@@ -381,6 +381,13 @@ else if (date == 23) {
     }).catch(function(error){
       console.log(error);
       console.log("Error fetching coordinates data.");
+      Alert.alert(
+ 'Error fetching weather for your location',
+ 'Please try again later.'
+)
+  this.setState({
+    loadingInProcess: false
+  })
     })
     }
 
@@ -412,6 +419,13 @@ else if (date == 23) {
     }).catch(function(error){
       console.log(error);
       console.log("Error fetching weather data.");
+      Alert.alert(
+ 'Error fetching weather data',
+ 'Please try again later.'
+)
+  this.setState({
+    loadingInProcess: false
+  })
     })
     }
 
@@ -428,6 +442,13 @@ else if (date == 23) {
     }).catch(function(error){
       console.log(error);
       console.log("Error fetching weather data.");
+      Alert.alert(
+ 'Error retrieving weather data',
+ 'Please try again later.'
+)
+  this.setState({
+    loadingInProcess: false
+  })
     })
     }
 
