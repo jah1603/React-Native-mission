@@ -441,6 +441,26 @@ else if (date == 23) {
   }
 }
 
+  getUVtext(uvIndex){
+    console.log("HERE IT IS FOLKS",uvIndex);
+    if (uvIndex < 3){
+      return "Low"
+    }else if (3 <= uvIndex < 6 ){
+      return "Moderate"
+    }else if (6 <= uvIndex < 8){
+      return "High"
+    }else if (8 <= uvIndex < 11){
+      return "Very High"
+    }else if (11 <= uvIndex){
+      return "Extreme"
+    }
+  }
+
+  getAverageUV(){
+      return (this.state.weather.daily.data[0].uvIndex + this.state.second_year_weather.daily.data[0].uvIndex) / 2
+
+  }
+
   timeConverterToHours = function (UNIX_timestamp) {
 
   var a = new Date(UNIX_timestamp * 1000);
@@ -846,6 +866,12 @@ else if (date == 23) {
                      <Image source={require('./assets/icons/sunset.png')} style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}>Sunrise: { this.timeConverterToHours(this.state.weather.daily.data[0].sunriseTime) } Sunset: { this.timeConverterToHours(this.state.weather.daily.data[0].sunsetTime) }</Text>
                      </View>
+
+                     <View style={styles.weatherItem}>
+                     <Image source={require('./assets/icons/sunblock.png')} style={{width: 75, height: 75}}/>
+                     <Text style={styles.weatherItemText}> UV level: {this.getUVtext(this.getAverageUV())}</Text>
+                     </View>
+
 
                      <View style={styles.weatherItem}>
                      <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
