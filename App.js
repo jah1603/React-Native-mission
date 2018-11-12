@@ -307,7 +307,7 @@ else if (date == 23) {
       Alert.alert(
  'Whoops...',
  'Enter your wedding location'
- 
+
 )
 }else{
 
@@ -920,8 +920,8 @@ else if (date == 23) {
                       region={{
                         latitude: self.state.position[0],
                         longitude: self.state.position[1],
-                        latitudeDelta: 1,
-                        longitudeDelta: 1
+                        latitudeDelta: 0.1,
+                        longitudeDelta: 0.1
                       }}
                       >
 
