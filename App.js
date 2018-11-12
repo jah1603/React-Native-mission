@@ -365,29 +365,33 @@ else if (date == 23) {
       }
     }
 
-    
-
-    getCoordinates(location){
+    problematicPlaceNameHandler(location){
 
       if (location === "Bath" || location === "bath"){
-        var updatedLocation = "Bath Somerset"
+        return "Bath Somerset"
       }
 
       if (location === "Wick" || location === "wick"){
-        var updatedLocation = "Wick caithness herring"
+        return "Wick caithness herring"
       }
 
       if (location === "Saint Andrews" || location === "saint andrews" || location === "saint Andrews" || location === "Saint andrews"){
-        var updatedLocation = "St Andrews"
+        return "St Andrews"
       }
 
       if (location === "newcastle county down" || location === "newcastle down" || location === "newcastle northern ireland" || location === "newcastle in ireland"){
-        var updatedLocation = "Newcastle ireland"
+        return "Newcastle ireland"
       }
 
       else {
-        var updatedLocation = location
+        return location
       }
+
+    }
+
+    getCoordinates(location){
+
+      var updatedLocation = this.problematicPlaceNameHandler(location);
 
       const url = `http://weather2wed.herokuapp.com/longlat/${updatedLocation}`
       var self = this;
