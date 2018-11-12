@@ -109,7 +109,8 @@ export default class App extends Component {
    searchedLocation: null,
    icon: '',
    loadingInProcess: null,
-   infoModalVisible: false
+   infoModalVisible: false,
+   hotels: null
  };
 
   // handleSubmit = () => {
@@ -367,6 +368,18 @@ else if (date == 23) {
     })
     }
 
+    getHotels(location){
+      const url = 'http://weather2wed.herokuapp.com/hotel/'+`${this.state.position[0]},${this.state.position[1]}`
+
+      axios.get(url).then((response) => {
+        console.log("HOTELS!!!!!",response.data.response.venues);
+        this.setState({
+          hotels: response.data.response.venues
+        },function(){this.toggleModal()})
+      })
+
+    }
+
 
     getWeatherData = function(location, seconds){
       console.log("API Key", key);
@@ -394,7 +407,7 @@ else if (date == 23) {
           console.log("data", this.data);
           this.setState({
             second_year_weather: response.data
-          }, function(){this.toggleModal()})
+          }, function(){this.getHotels()})
 
     }).catch(function(error){
       console.log(error);
@@ -488,8 +501,29 @@ else if (date == 23) {
     return (this.state.weather.hourly.data[14].temperature + this.state.second_year_weather.hourly.data[14].temperature) / 2
   }
 
+  hotelsToMap(){
+    if (this.state.hotels){
+      return this.state.hotels.map( (hotel) =>
+
+          <MapView.Marker key={hotel.location.lat}
+                            coordinate={{
+                              latitude: hotel.location.lat,
+                              longitude: hotel.location.lng
+                            }}
+                            title={hotel.name}
+                            pinColor={"#12D8FA"}
+                            description={hotel.location.address}
+                            />
+        )
+
+
+      }
+
+  }
+
   render() {
     var self = this;
+
 
 
     if (self.state.loadingInProcess === true){
@@ -838,10 +872,10 @@ else if (date == 23) {
                      <Text style={styles.weatherItemText}>Cloud cover: { this.getAverageCloudCover() * 100 }%</Text>
                      </View>
 
-                      <View style={{height: 500, width: '90%',
+                      <View style={{height: 500, width: '90%', borderRadius: 15, overflow: 'hidden',
                         marginLeft: '5%'}}>
                       <MapView style={styles.map}
-                      scrollEnabled={false}
+                      scrollEnabled={true}
                       toolbarEnabled={false}
                       zoomEnabled={true}
                       zoomControlEnabled={true}
@@ -861,8 +895,10 @@ else if (date == 23) {
                         title={'You searched:'}
                         description={`'${this.state.searchedLocation}'`}
                         />
-
+                       {self.hotelsToMap()}
                       </MapView>
+
+
                       </View>
 
 
@@ -1005,7 +1041,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: 'transparent',
     top: 0,
