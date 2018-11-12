@@ -511,6 +511,7 @@ else if (date == 23) {
                               longitude: hotel.location.lng
                             }}
                             title={hotel.name}
+                            pinColor={"#12D8FA"}
                             description={hotel.location.address}
                             />
         )
@@ -874,7 +875,7 @@ else if (date == 23) {
                       <View style={{height: 500, width: '90%',
                         marginLeft: '5%'}}>
                       <MapView style={styles.map}
-                      scrollEnabled={false}
+                      scrollEnabled={true}
                       toolbarEnabled={false}
                       zoomEnabled={true}
                       zoomControlEnabled={true}
