@@ -511,7 +511,7 @@ else if (date == 23) {
                               longitude: hotel.location.lng
                             }}
                             title={hotel.name}
-                            description={hotel.address}
+                            description={hotel.location.address}
                             />
         )
 
