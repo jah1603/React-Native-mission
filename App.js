@@ -615,7 +615,7 @@ else if (date == 23) {
       </View>
 
           <View style={styles.buttonContainer}>
-          < BarIndicator count={7} size={60} color={'white'}/>
+          < BarIndicator count={7} size={60} color={'white'} style={{top: '-5%'}}/>
           </View>
 
           <Modal
@@ -944,9 +944,9 @@ else if (date == 23) {
                      </ScrollView>
 
 
-                     <TouchableOpacity onPress={this.toggleModal} style={{justifyContent: 'center', height: '10%'}}>
-                     <View style={{justifyContent: 'center'}}>
-                       <Image source={require('./assets/darksky.png')} style={{ height: 33.98509187, width: 150, marginLeft: 75 }}/>
+                     <TouchableOpacity onPress={this.toggleInfoModal} style={{justifyContent: 'center', height: '10%'}}>
+                     <View style={{justifyContent: 'center', alignItems: 'center'}}>
+                       <Image source={require('./assets/darksky.png')} style={{ height: 33.98509187, width: 150}}/>
                      </View>
                      </TouchableOpacity>
 
