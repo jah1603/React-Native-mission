@@ -511,7 +511,7 @@ else if (date == 23) {
        </View>
      ) : null
    }
-          <View style={{paddingBottom: '10%'}}>
+          <View style={{paddingBottom: '10%', paddingLeft: 20, paddingRight: 20}}>
           <TextInput
         style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19, paddingLeft: 20, paddingRight: 20}}
         onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
