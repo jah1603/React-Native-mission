@@ -501,8 +501,28 @@ else if (date == 23) {
     return (this.state.weather.hourly.data[14].temperature + this.state.second_year_weather.hourly.data[14].temperature) / 2
   }
 
+  hotelsToMap(){
+    if (this.state.hotels){
+      return this.state.hotels.map( (hotel) =>
+
+          <MapView.Marker key={hotel.location.lat}
+                            coordinate={{
+                              latitude: hotel.location.lat,
+                              longitude: hotel.location.lng
+                            }}
+                            title={hotel.name}
+                            description={hotel.address}
+                            />
+        )
+
+
+      }
+
+  }
+
   render() {
     var self = this;
+
 
 
     if (self.state.loadingInProcess === true){
@@ -874,8 +894,10 @@ else if (date == 23) {
                         title={'You searched:'}
                         description={`'${this.state.searchedLocation}'`}
                         />
-
+                       {self.hotelsToMap()}
                       </MapView>
+
+
                       </View>
 
 
