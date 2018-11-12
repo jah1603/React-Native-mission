@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebView, Linking, View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
+import { WebView, View, Linking, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground,  ActivityIndicator,} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
@@ -742,7 +742,13 @@ else if (date == 23) {
 
        <Text style={styles.infoHeadingText}>About</Text>
 
-       <Text style={{color: 'white', padding: 20}}>Weather2Wedwas born from a vanilla Javascript project undertaken by <Text onPress={ ()=> Linking.openURL('https://github.com/jah1603')}>James Henderson</Text>, <Text>Stephen Rooney</Text>, <Text>Helen O’Shea</Text> & <Text>David Pears</Text>. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.</Text>
+       <Text style={{color: 'white', padding: 20}}>Weather2Wed was born from a vanilla Javascript project undertaken by</Text>
+        <TouchableOpacity onPress={()=>Linking.openURL('https://github.com/jah1603')}><Text style={{color: 'blue'}}> James Henderson</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>Linking.openURL('https://github.com/SFR1981')}><Text style={{color: 'blue'}}>, Stephen Rooney</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>Linking.openURL('https://github.com/helenosheaa')}><Text style={{color: 'blue'}}>, Helen O’Shea</Text></TouchableOpacity>
+        <TouchableOpacity onPress={()=>Linking.openURL('https://github.com/DavidAPears')}><Text style={{color: 'blue'}}>& David Pears.</Text></TouchableOpacity>
+        <Text> The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.</Text>
+
 
        <Text style={{color: 'white', paddingLeft: 20, paddingBottom: 10}}>Weather2Wed’s aim is to allow bride and grooms to asses the weather for their potential wedding date - at any UK location. Powered by DarkSky; the app returns the average/typical weather (based on historical weather data) for any given location in the UK. The app utilises Geograph’s API which means that 95% of the UK can be entered as a search term (the fuzzy search allows for place name, postcode, region or even landmark). Weather2Wed also suggests hotels in and around a prospective wedding venue using the FourSquare API. There is no commercial benefit to us, the creators, this information is provided as a free service. </Text>
 
