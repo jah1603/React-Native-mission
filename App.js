@@ -93,6 +93,7 @@ export default class App extends Component {
   super(props);
   this.processSubmit = this.processSubmit.bind(this);
   this.toggleModal = this.toggleModal.bind(this);
+  this.toggleInfoModal = this.toggleInfoModal.bind(this);
   this.getWeatherData = this.getWeatherData.bind(this);
   this.getCoordinates = this.getCoordinates.bind(this);
 }
@@ -310,6 +311,14 @@ else if (date == 23) {
 
     }
 
+    toggleInfoModal(){
+
+      console.log("INFO MODAL VISIBLE", this.state.infoModalVisible);
+
+      this.setState({ infoModalVisible: !this.state.infoModalVisible })
+
+    }
+
     dateForRequest(dateChosen){
       var newYearsDay2019 = 1483228800;
       var fractionOfYear = dateChosen / 365;
@@ -323,8 +332,6 @@ else if (date == 23) {
       var now = new Date(Date.now());
       var theirDate = new Date();
       var dateSearched = new Date((searchedDate + 86400) * 1000);
-
-
 
       theirDate.setMonth(dateSearched.getMonth());
       theirDate.setDate(dateSearched.getDate());
@@ -709,10 +716,41 @@ else if (date == 23) {
       <View>
       <TouchableOpacity
       style={{position: 'relative', top: '-110%'}}
-      onPress={()=>{Alert.alert("About", "Weather2Wed was born from a vanilla Javascript project undertaken by James Henderson, Stephen Rooney, Helen O’Shea & David Pears. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.")}}>
+      onPress={this.toggleInfoModal}>
       <Image source={require('./assets/info_icon.png')} style={{height: 20, width: 20, position: 'relative', left: '92%', top: '0%'}}/>
       </TouchableOpacity>
       </View>
+
+      <Modal  isVisible={this.state.infoModalVisible}
+      style={{borderWidth: 0, borderRadius: 10, backgroundColor: 'grey'}}>
+
+      <LinearGradient
+        colors={['#A6FFCB', '#12D8FA']}
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 0,
+          height: '100%'
+        }}
+      >
+
+      <TouchableOpacity onPress={this.toggleInfoModal} style={{ height: 22}}>
+        <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
+      </TouchableOpacity>
+
+       <Text style={styles.weatherHeadingText}>About section</Text>
+
+       <Text>Weather2Wed was born from a vanilla Javascript project undertaken by James Henderson, Stephen Rooney, Helen O’Shea & David Pears. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.</Text>
+
+       <Text>Weather2Wed’s aim is to allow bride and grooms to asses the weather for their potential wedding date - and at that location. Powered by DarkSky; the app returns the average/typical weather (based on historical weather data) for any given location in the UK. The app utilises Geograph’s API which means that 95% of the UK can be entered as a search term (the fuzzy search allows for place name, postcode, region or even landmark). Weather2Wed also suggests hotels in and around a prospective wedding venue using the FourSquare API. There is no commercial benefit to us, the creators, this information is provided as a free service. </Text>
+
+       <Text>Weather2Wed</Text>
+
+       <Text>November 2018</Text>
+
+       </LinearGradient>
+      </Modal>
 
           {
             this.state.weather ? (
