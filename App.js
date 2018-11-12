@@ -872,7 +872,7 @@ else if (date == 23) {
                      <Text style={styles.weatherItemText}>Cloud cover: { this.getAverageCloudCover() * 100 }%</Text>
                      </View>
 
-                      <View style={{height: 500, width: '90%',
+                      <View style={{height: 500, width: '90%', borderRadius: 15, overflow: 'hidden',
                         marginLeft: '5%'}}>
                       <MapView style={styles.map}
                       scrollEnabled={true}
@@ -1041,7 +1041,7 @@ const styles = StyleSheet.create({
   },
   map: {
     position: 'absolute',
-    borderRadius: 10,
+    borderRadius: 15,
     borderWidth: 1,
     borderColor: 'transparent',
     top: 0,
