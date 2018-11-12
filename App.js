@@ -610,7 +610,7 @@ else if (date == 23) {
               textSize={20}
       />
       <Text style={{fontSize: 25, fontWeight: 'normal', color: "white"}}>
-      {`${this.convertSecondsToCalendarDate()}`}
+      {`${this.convertSecondsToCalendarDateForOutputText()}`}
       </Text>
       </View>
 
@@ -909,14 +909,6 @@ else if (date == 23) {
                      <Image source={ this.moonPhaseImage(this.convertMoonPhaseNumberToImageName(this.moonPhase())) } style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}>{this.convertMoonPhaseNumberToName(this.moonPhase())} </Text>
                      </View>
-
-
-
-
-
-
-
-
 
                       <View style={{height: 500, width: '90%', borderRadius: 15, overflow: 'hidden',
                         marginLeft: '5%'}}>
