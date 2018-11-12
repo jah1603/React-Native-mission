@@ -880,7 +880,7 @@ else if (date == 23) {
                      <Text style={styles.weatherItemText}>Low: {this.fahrenheitToCelsius(this.getAverageLow())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureLowTime) } High: {this.fahrenheitToCelsius(this.getAverageHigh())}°C at { this.timeConverterToHours(this.state.weather.daily.data[0].temperatureHighTime) } </Text>
                      </View>
 
-                     <View style={styles.weatherItem}>
+                     <View style={styles.weatherItemUV}>
                      <Image source={require('./assets/icons/sunblock.png')} style={{width: 75, height: 75}}/>
                      <Text style={styles.weatherItemText}> UV level: {this.getUVtext(this.getAverageUV())}</Text>
                      </View>
@@ -1004,6 +1004,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
     padding: 15
+  },
+  weatherItemUV: {
+    flex: 1,
+    justifyContent: 'center',
+    flexDirection: 'row',
+    padding: 15,
+    marginLeft: 15
   },
   weatherHeadingStyle: {
     flex: 1,
