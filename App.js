@@ -722,7 +722,7 @@ else if (date == 23) {
       </View>
 
       <Modal  isVisible={this.state.infoModalVisible}
-      style={{borderWidth: 0, borderRadius: 10, backgroundColor: 'grey'}}>
+      style={{borderWidth: 0, borderRadius: 10, justifyContent: 'center', alignItems: 'center'}}>
 
       <LinearGradient
         colors={['#A6FFCB', '#12D8FA']}
@@ -731,7 +731,8 @@ else if (date == 23) {
           left: 0,
           right: 0,
           top: 0,
-          height: '100%'
+          height: '100%',
+          borderRadius: 10
         }}
       >
 
@@ -739,15 +740,15 @@ else if (date == 23) {
         <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
       </TouchableOpacity>
 
-       <Text style={styles.weatherHeadingText}>About section</Text>
+       <Text style={styles.weatherHeadingText}>About</Text>
 
-       <Text>Weather2Wed was born from a vanilla Javascript project undertaken by James Henderson, Stephen Rooney, Helen O’Shea & David Pears. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.</Text>
+       <Text style={{color: 'white', padding: 20}}>Weather2Wed was born from a vanilla Javascript project undertaken by James Henderson, Stephen Rooney, Helen O’Shea & David Pears. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.</Text>
 
-       <Text>Weather2Wed’s aim is to allow bride and grooms to asses the weather for their potential wedding date - and at that location. Powered by DarkSky; the app returns the average/typical weather (based on historical weather data) for any given location in the UK. The app utilises Geograph’s API which means that 95% of the UK can be entered as a search term (the fuzzy search allows for place name, postcode, region or even landmark). Weather2Wed also suggests hotels in and around a prospective wedding venue using the FourSquare API. There is no commercial benefit to us, the creators, this information is provided as a free service. </Text>
+       <Text style={{color: 'white', paddingLeft: 20, paddingBottom: 10}}>Weather2Wed’s aim is to allow bride and grooms to asses the weather for their potential wedding date - at any UK location. Powered by DarkSky; the app returns the average/typical weather (based on historical weather data) for any given location in the UK. The app utilises Geograph’s API which means that 95% of the UK can be entered as a search term (the fuzzy search allows for place name, postcode, region or even landmark). Weather2Wed also suggests hotels in and around a prospective wedding venue using the FourSquare API. There is no commercial benefit to us, the creators, this information is provided as a free service. </Text>
 
-       <Text>Weather2Wed</Text>
+       <Text style={{color: 'white', paddingLeft: 20}}>Weather2Wed</Text>
 
-       <Text>November 2018</Text>
+       <Text style={{color: 'white', paddingBottom: 5, paddingLeft: 20}}>November 2018</Text>
 
        </LinearGradient>
       </Modal>
