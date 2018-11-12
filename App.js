@@ -736,8 +736,8 @@ else if (date == 23) {
         }}
       >
 
-      <TouchableOpacity onPress={this.toggleInfoModal} style={{ height: 22}}>
-        <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
+      <TouchableOpacity onPress={this.toggleInfoModal} style={{ height: 32}}>
+        <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, marginTop: 10, position: 'relative', left:'91%'}}/>
       </TouchableOpacity>
 
       <View style={{alignItems: "center"}}>
@@ -747,9 +747,9 @@ else if (date == 23) {
         <ScrollView>
 
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20, paddingRight: 20, paddingTop: 10}}>Weather2Wed was born from a vanilla Javascript project undertaken by <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://github.com/jah1603')}>James Henderson</Text><Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://github.com/SFR1981')}>, Stephen Rooney</Text><Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://github.com/helenosheaa')}>, Helen O’Shea</Text> &<Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://github.com/DavidAPears')}> David Pears.</Text></Text>
-        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', padding: 20}}> The project formed part of the <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://codeclan.com')}>CodeClan</Text> Software Development course. The original web app can still be seen <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://weather2wed.herokuapp.com')}>here</Text>. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('www.reactnative.com')}>ReactNative</Text> (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this app.</Text>
+        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', padding: 20}}> The project formed part of the <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://codeclan.com')}>CodeClan</Text> Software Development course. The original web app can still be seen <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://weather2wed.herokuapp.com')}>here</Text>. Then, James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('www.reactnative.com')}>ReactNative</Text> (teaching themselves the language in the process).  Several hundred cups of coffee later, the result is this app.</Text>
 
-       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Wed’s aim is to allow bride and grooms to asses the weather for their potential wedding date - at any UK location. Powered by <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the average/typical weather (based on historical weather data) for any given location in the UK. The app utilises <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}>Geograph's API</Text> which means that 95% of the UK can be entered as a search term (the fuzzy search allows for place name, postcode, region or even landmark). Weather2Wed also suggests hotels in and around a prospective wedding venue using the <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. There is no commercial benefit to us, the creators, this information is provided as a free service. </Text>
+       <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20, paddingTop: 10, paddingRight: 20, paddingBottom: 10}}>Weather2Wed’s aim is to allow bride and grooms to asses the weather for their potential wedding date - at any UK location. Powered by <Text style={{fontSize: 17, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://darksky.net/')}>Dark Sky</Text>, the app returns the average/typical weather (based on historical weather data) for any given location in the UK. The app utilises <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://www.geograph.org.uk/')}>Geograph's API</Text> which means that 95% of the UK can be entered as a search term (the fuzzy search allows for place names, postcodes, regions or even landmarks). Weather2Wed also suggests hotels in and around a prospective wedding venue using the <Text style={{fontSize: 18, color: '#a8a8a8'}} onPress={()=>Linking.openURL('https://developer.foursquare.com/places-api')}>FourSquare API</Text>. There is no commercial benefit to us, the creators; this information is provided as a free service. </Text>
 
        <Text style={{fontSize: 17, fontWeight: 'bold', color: 'white', paddingLeft: 20}}>Weather2Wed</Text>
 
@@ -774,7 +774,8 @@ else if (date == 23) {
                     left: 0,
                     right: 0,
                     top: 0,
-                    height: '100%'
+                    height: '100%',
+                    borderRadius: 15
                   }}
                 >
 
@@ -783,8 +784,8 @@ else if (date == 23) {
 
                   {/* Exit cross element begins here */}
 
-                  <TouchableOpacity onPress={this.toggleModal} style={{ height: 25}}>
-                    <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginTop: 3, marginBottom: 10, position: 'relative', left:'93%'}}/>
+                  <TouchableOpacity onPress={this.toggleModal} style={{ height: 28}}>
+                    <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginTop: 6, marginBottom: 10, position: 'relative', left:'91%'}}/>
                   </TouchableOpacity>
 
                   {/* Exit cross element ends here */}
