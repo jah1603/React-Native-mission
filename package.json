@@ -26,6 +26,7 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-30.0.0.tar.gz",
     "react-native-animate-loading-button": "^1.0.3",
     "react-native-auto-height-image": "^1.0.5",
+    "react-native-awesome-alerts": "^1.2.0",
     "react-native-circle-slider": "^1.1.1",
     "react-native-datepicker": "^1.7.2",
     "react-native-fit-image": "^1.5.4",

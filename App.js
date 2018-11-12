@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebView, View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
+import { WebView, Alert, View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground,  ActivityIndicator,} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
@@ -9,6 +9,7 @@ import FitImage from 'react-native-fit-image';
 import Carousel from 'react-native-snap-carousel';
 import { Font, LinearGradient } from 'expo';
 import t from 'tcomb-form-native';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import key from './google.js';
 import MapView from 'react-native-maps';
 import SunCalc from 'suncalc';
@@ -106,7 +107,8 @@ export default class App extends Component {
    position: null,
    searchedLocation: null,
    icon: '',
-   loadingInProcess: null
+   loadingInProcess: null,
+   infoModalVisible: false
  };
 
   // handleSubmit = () => {
@@ -504,7 +506,7 @@ else if (date == 23) {
    }
           <View style={{paddingBottom: '10%'}}>
           <TextInput
-        style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
+        style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19, paddingLeft: 20, paddingRight: 20}}
         onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
         value={this.state.searchedLocation} placeholder='Where? Place or postcode' placeholderTextColor='white'
         underlineColorAndroid='transparent'
@@ -539,8 +541,7 @@ else if (date == 23) {
       </View>
 
           <View style={styles.buttonContainer}>
-          < BarIndicator count={7} size={60} color={'#24b599'}/>
-
+          < BarIndicator count={7} size={60} color={'white'}/>
           </View>
 
           <Modal
@@ -661,7 +662,7 @@ else if (date == 23) {
      </View>
    ) : null
  }
-        <View style={{paddingBottom: '10%'}}>
+        <View style={{paddingBottom: '10%', paddingLeft: 20, paddingRight: 20}}>
         <TextInput
       style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19}}
       onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
@@ -705,8 +706,13 @@ else if (date == 23) {
         </TouchableOpacity>
       </View>
 
-
-
+      <View>
+      <TouchableOpacity
+      style={{position: 'relative', top: '-110%'}}
+      onPress={()=>{Alert.alert("About", "Weather2Wed was born from a vanilla Javascript project undertaken by James Henderson, Stephen Rooney, Helen O’Shea & David Pears. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.")}}>
+      <Image source={require('./assets/info_icon.png')} style={{height: 20, width: 20, position: 'relative', left: '92%', top: '0%'}}/>
+      </TouchableOpacity>
+      </View>
 
           {
             this.state.weather ? (
@@ -854,7 +860,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     marginTop: 45,
-    padding: 20,
+    paddingTop: 20,
     backgroundColor: 'transparent'
   },
   resultsWrapper: {
