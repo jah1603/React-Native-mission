@@ -321,12 +321,21 @@ else if (date == 23) {
     }
 
     dateForRequest(dateChosen){
-      var newYearsDay2019 = 1483228800;
+      var now = new Date(Date.now());
+
+
+
+      var newYearsDayYearBefore = new Date('January 1, 1995 00:00:00');
+      newYearsDayYearBefore.setFullYear(now.getFullYear() - 1)
       var fractionOfYear = dateChosen / 365;
       var secondsInAYear = 31536000;
       var seconds = fractionOfYear * secondsInAYear;
 
-      return seconds + 1483228800;
+      newYearsDayYearBefore.getTime()
+
+      console.log("NEW YEAR YEAR BEFORE CURRENT YEAR", newYearsDayYearBefore);
+
+      return seconds + newYearsDayYearBefore;
     }
 
     moonPhaseDate(searchedDate){
