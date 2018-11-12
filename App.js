@@ -365,7 +365,6 @@ else if (date == 23) {
       }
     }
 
-
     getCoordinates(location){
 
       const url = `http://weather2wed.herokuapp.com/longlat/${location}`
