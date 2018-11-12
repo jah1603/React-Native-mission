@@ -305,8 +305,9 @@ else if (date == 23) {
 
     if (!this.state.searchedLocation){
       Alert.alert(
- 'Sorry...',
- 'Enter your wedding location',
+ 'Whoops...',
+ 'Enter your wedding location'
+ 
 )
 }else{
 
