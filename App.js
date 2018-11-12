@@ -325,13 +325,13 @@ else if (date == 23) {
 
 
 
-      var newYearsDayYearBefore = new Date('January 1, 1995 00:00:00');
-      newYearsDayYearBefore.setFullYear(now.getFullYear() - 1)
+      var newYearsDayYearBeforeDate = new Date('January 1, 1995 00:00:00');
+      newYearsDayYearBeforeDate.setFullYear(now.getFullYear() - 1)
       var fractionOfYear = dateChosen / 365;
       var secondsInAYear = 31536000;
       var seconds = fractionOfYear * secondsInAYear;
 
-      newYearsDayYearBefore.getTime()
+      var newYearsDayYearBefore = (Date.parse(newYearsDayYearBeforeDate)/1000).toFixed(0);
 
       console.log("NEW YEAR YEAR BEFORE CURRENT YEAR", newYearsDayYearBefore);
 
