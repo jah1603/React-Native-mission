@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { WebView, Alert, View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
+import { WebView, Linking, View, Text, TextInput, ScrollView, StyleSheet, Button, TouchableOpacity, Image } from 'react-native';
 import {ImageBackground,  ActivityIndicator,} from 'react-native';
 import DatePicker from 'react-native-datepicker';
 import CircleSlider from 'react-native-circle-slider';
@@ -680,7 +680,7 @@ else if (date == 23) {
         </View>
 
         <View style={{ width: '100%', height: '50%', alignItems: 'center'}}>
-        <CircleSlider style={{position: 'relative', top: '10%', paddingTop: '100%'}}
+        <CircleSlider style={{position: 'relative', top: '0%', paddingTop: '100%'}}
 			arcDirection={'CW'}
             backgroundColor={"white"}
             value={0}
@@ -709,13 +709,13 @@ else if (date == 23) {
         <TouchableOpacity
         style={styles.button}
         onPress={this.processSubmit}>
-        <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 100, width: 100 }}/>
+        <Image source={require('./assets/weather2wed_button.jpg')} style={{height: 75, width: 75 }}/>
         </TouchableOpacity>
       </View>
 
       <View>
       <TouchableOpacity
-      style={{position: 'relative', top: '-110%'}}
+      style={{position: 'relative', top: '-185%'}}
       onPress={this.toggleInfoModal}>
       <Image source={require('./assets/info_icon.png')} style={{height: 20, width: 20, position: 'relative', left: '92%', top: '0%'}}/>
       </TouchableOpacity>
@@ -740,9 +740,9 @@ else if (date == 23) {
         <Image source={require('./assets/image.png')} style={{height: 22, width: 22, marginBottom: 10, position: 'relative', left:'91%'}}/>
       </TouchableOpacity>
 
-       <Text style={styles.weatherHeadingText}>About</Text>
+       <Text style={styles.infoHeadingText}>About</Text>
 
-       <Text style={{color: 'white', padding: 20}}>Weather2Wed was born from a vanilla Javascript project undertaken by James Henderson, Stephen Rooney, Helen O’Shea & David Pears. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.</Text>
+       <Text style={{color: 'white', padding: 20}}>Weather2Wedwas born from a vanilla Javascript project undertaken by <Text onPress={ ()=> Linking.openURL('https://github.com/jah1603')}>James Henderson</Text>, <Text>Stephen Rooney</Text>, <Text>Helen O’Shea</Text> & <Text>David Pears</Text>. The project formed part of the CodeClan Software Development course. The original web app can still be seen here. Then - James, Stephen and David holed themselves up in an Edinburgh cafe to convert Weather2Wed into ReactNative (teaching themselves the language in the process).  Several hundred cups of coffee later; the result is this App.</Text>
 
        <Text style={{color: 'white', paddingLeft: 20, paddingBottom: 10}}>Weather2Wed’s aim is to allow bride and grooms to asses the weather for their potential wedding date - at any UK location. Powered by DarkSky; the app returns the average/typical weather (based on historical weather data) for any given location in the UK. The app utilises Geograph’s API which means that 95% of the UK can be entered as a search term (the fuzzy search allows for place name, postcode, region or even landmark). Weather2Wed also suggests hotels in and around a prospective wedding venue using the FourSquare API. There is no commercial benefit to us, the creators, this information is provided as a free service. </Text>
 
@@ -899,7 +899,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     alignItems: 'stretch',
     marginTop: 45,
-    paddingTop: 20,
+    paddingTop: 10,
     backgroundColor: 'transparent'
   },
   resultsWrapper: {
@@ -948,6 +948,15 @@ const styles = StyleSheet.create({
   weatherHeadingText: {
     flexWrap: 'wrap',
     paddingLeft: 15,
+    fontSize: 18,
+    marginBottom: 0,
+    paddingBottom: 7,
+    fontWeight: 'bold',
+    color: 'white'
+  },
+  infoHeadingText: {
+    flexWrap: 'wrap',
+    paddingLeft: 20,
     fontSize: 18,
     marginBottom: 0,
     paddingBottom: 7,
