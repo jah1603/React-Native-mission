@@ -365,6 +365,8 @@ else if (date == 23) {
       }
     }
 
+    
+
     getCoordinates(location){
 
       if (location === "Bath" || location === "bath"){
@@ -373,6 +375,14 @@ else if (date == 23) {
 
       if (location === "Wick" || location === "wick"){
         var updatedLocation = "Wick caithness herring"
+      }
+
+      if (location === "Saint Andrews" || location === "saint andrews" || location === "saint Andrews" || location === "Saint andrews"){
+        var updatedLocation = "St Andrews"
+      }
+
+      if (location === "newcastle county down" || location === "newcastle down" || location === "newcastle northern ireland" || location === "newcastle in ireland"){
+        var updatedLocation = "Newcastle ireland"
       }
 
       else {
@@ -395,7 +405,7 @@ else if (date == 23) {
       console.log("Error fetching coordinates data.");
       Alert.alert(
  'Could not find weather for your location',
- 'Make sure you spelled it right. Hint: the more specific, the better e.g. type Bath Somerset instead of Bath'
+ "Try to be more specific e.g. type 'Bath Somerset' rather than 'Bath' or 'Bangor Wales' instead of 'Bangor'."
 )
   self.setState({
     loadingInProcess: false
