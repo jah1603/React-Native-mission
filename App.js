@@ -367,7 +367,19 @@ else if (date == 23) {
 
     getCoordinates(location){
 
-      const url = `http://weather2wed.herokuapp.com/longlat/${location}`
+      if (location === "Bath" || location === "bath"){
+        var updatedLocation = "Bath Somerset"
+      }
+
+      if (location === "Wick" || location === "wick"){
+        var updatedLocation = "Wick caithness herring"
+      }
+
+      else {
+        var updatedLocation = location
+      }
+
+      const url = `http://weather2wed.herokuapp.com/longlat/${updatedLocation}`
       var self = this;
 
         axios.get(url).then((response) => {
@@ -382,10 +394,10 @@ else if (date == 23) {
       console.log(error);
       console.log("Error fetching coordinates data.");
       Alert.alert(
- 'Error fetching weather for your location',
- 'Please try again later.'
+ 'Could not find weather for your location',
+ 'Make sure you spelled it right. Hint: the more specific, the better e.g. type Bath Somerset instead of Bath'
 )
-  this.setState({
+  self.setState({
     loadingInProcess: false
   })
     })
@@ -405,6 +417,7 @@ else if (date == 23) {
 
 
     getWeatherData = function(location, seconds){
+      var self = this;
       console.log("API Key", key);
         const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
         console.log("RETRIEVING WEAther");
@@ -423,13 +436,14 @@ else if (date == 23) {
  'Error fetching weather data',
  'Please try again later.'
 )
-  this.setState({
+  self.setState({
     loadingInProcess: false
   })
     })
     }
 
     getSecondYearOfWeatherData = function(location, seconds){
+      var self = this;
       console.log("API Key", key);
         const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
         axios.get(url).then(response => {
@@ -443,10 +457,10 @@ else if (date == 23) {
       console.log(error);
       console.log("Error fetching weather data.");
       Alert.alert(
- 'Error retrieving weather data',
+ 'Error fetching weather data',
  'Please try again later.'
 )
-  this.setState({
+  self.setState({
     loadingInProcess: false
   })
     })
