@@ -589,6 +589,15 @@ else if (date == 23) {
   }
 
   getAveragePrecipitationProbability(){
+  
+    if (!this.state.weather.daily.data[0].precipProbability){
+       this.state.weather.daily.data[0].precipProbability = 0;
+    }
+
+    if (!this.state.second_year_weather.daily.data[0].precipProbability){
+       this.state.second_year_weather.daily.data[0].precipProbability = 0;
+    }
+
     return ((this.state.weather.daily.data[0].precipProbability + this.state.second_year_weather.daily.data[0].precipProbability) / 2).toFixed(0)
   }
 
