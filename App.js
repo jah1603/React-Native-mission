@@ -602,7 +602,7 @@ else if (date == 23) {
     if (this.state.hotels){
       return this.state.hotels.map( (hotel) =>
 
-          <MapView.Marker key={hotel.location.lat}
+          <MapView.Marker key={((new Date).getTime() + Math.random())}
                             coordinate={{
                               latitude: hotel.location.lat,
                               longitude: hotel.location.lng
