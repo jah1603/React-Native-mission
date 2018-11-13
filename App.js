@@ -387,6 +387,10 @@ else if (date == 23) {
         return "Stonehenge Wiltshire"
       }
 
+      if (location === "cowes" || location === "Cowes"){
+        return "cowes wight"
+      }
+
       else {
         return location
       }
