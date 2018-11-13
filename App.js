@@ -337,12 +337,11 @@ else if (date == 23) {
       var secondsInAYear = 31536000;
       var seconds = fractionOfYear * secondsInAYear;
 
-      var newYearsDayYearBefore = (Date.parse(newYearsDayYearBeforeDate)/1000).toFixed(0);
+      console.log("DATE SEARCH", newYearsDayYearBeforeDate);
 
-      console.log("NEW YEARS DAY BEFORE", newYearsDayYearBefore);
-      console.log("SECONDs", seconds);
+      var newYearsDayYearBefore = (Date.parse(newYearsDayYearBeforeDate)/1000).toFixed(0) - parseInt(18000);
 
-      console.log("DATE FOR SEARCH", (parseInt(seconds) + parseInt(newYearsDayYearBefore)));
+      console.log("TIMESTAMP SEARCHED", newYearsDayYearBefore);
 
       return (parseInt(seconds) + parseInt(newYearsDayYearBefore));
     }
@@ -539,7 +538,9 @@ else if (date == 23) {
 
   timeConverterToHours = function (UNIX_timestamp) {
 
-  var a = new Date(UNIX_timestamp * 1000);
+  var a = new Date((UNIX_timestamp + 18000) * 1000);
+
+  console.log("a", a);
 
   var hour = a.getHours(); // makes time easier to read (presumes wedding is pm!)
   var min = a.getMinutes();
