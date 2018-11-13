@@ -331,8 +331,6 @@ else if (date == 23) {
     dateForRequest(dateChosen){
       var now = new Date(Date.now());
 
-
-
       var newYearsDayYearBeforeDate = new Date('January 1, 1995 00:00:00');
       newYearsDayYearBeforeDate.setFullYear(now.getFullYear() - 1)
       var fractionOfYear = dateChosen / 365;
@@ -341,9 +339,12 @@ else if (date == 23) {
 
       var newYearsDayYearBefore = (Date.parse(newYearsDayYearBeforeDate)/1000).toFixed(0);
 
-      console.log("NEW YEAR YEAR BEFORE CURRENT YEAR", newYearsDayYearBefore);
+      console.log("NEW YEARS DAY BEFORE", newYearsDayYearBefore);
+      console.log("SECONDs", seconds);
 
-      return seconds + newYearsDayYearBefore;
+      console.log("DATE FOR SEARCH", (parseInt(seconds) + parseInt(newYearsDayYearBefore)));
+
+      return (parseInt(seconds) + parseInt(newYearsDayYearBefore));
     }
 
     moonPhaseDate(searchedDate){
@@ -475,7 +476,7 @@ else if (date == 23) {
 
     }).catch(function(error){
       console.log(error);
-      console.log("Error fetching weather data.");
+      console.log("Error fetching second weather data.");
       Alert.alert(
  'Error fetching weather data',
  'Please try again later.'
