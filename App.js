@@ -395,6 +395,10 @@ else if (date == 23) {
         return "Balmoral castle"
       }
 
+      if (location === "stoke" || location === "Stoke"){
+        return "stoke on trent"
+      }
+
       else {
         return location
       }
