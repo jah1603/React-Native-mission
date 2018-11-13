@@ -391,6 +391,10 @@ else if (date == 23) {
         return "cowes wight"
       }
 
+      if (location === "balmoral" || location === "Balmoral"){
+        return "Balmoral castle"
+      }
+
       else {
         return location
       }
