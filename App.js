@@ -396,7 +396,7 @@ else if (date == 23) {
       const url = `http://weather2wed.herokuapp.com/longlat/${updatedLocation}`
       var self = this;
 
-        axios.get(url).then((response) => {
+        axios.get(url).then( (response) => {
 
           var position = [parseFloat(response.data.items[0].lat), parseFloat(response.data.items[0].long)]
           console.log("DATE SEARCHED", self.state.dateSelected);
@@ -432,16 +432,22 @@ else if (date == 23) {
 
     getWeatherData = function(location, seconds){
       var self = this;
+      var urls = ['weather2wed.herokuapp.com', 'weather5wed5.herokuapp.com', 'weather2wed2.herokuapp.com', 'weather2wed3.herokuapp.com', 'weather2wed4.herokuapp.com']
+
+      var url = urls[Math.floor(Math.random()*urls.length)];
+
+      console.log("URL FOR SEARCH", url);
+
       console.log("API Key", key);
-        const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
+        const request_url = `http://${url}/weather/${location}/${seconds}`
         console.log("RETRIEVING WEAther");
-        axios.get(url).then(response => {
+        axios.get(request_url).then(response => {
 
           console.log("data", this.data);
           this.setState({
             weather: response.data,
             icon: `${response.data.daily.data[0].icon}`
-          }, function(){this.getSecondYearOfWeatherData(`${this.state.position[0]},${this.state.position[1]}`, (this.dateForRequest(this.state.dateSelected) - 31536000)) })
+          }, function(){this.getSecondYearOfWeatherData(`${this.state.position[0]},${this.state.position[1]}`, (this.dateForRequest(this.state.dateSelected) - 31536000), url) })
 
     }).catch(function(error){
       console.log(error);
@@ -456,11 +462,11 @@ else if (date == 23) {
     })
     }
 
-    getSecondYearOfWeatherData = function(location, seconds){
+    getSecondYearOfWeatherData = function(location, seconds, url){
       var self = this;
       console.log("API Key", key);
-        const url = `http://weather2wed.herokuapp.com/weather/${location}/${seconds}`
-        axios.get(url).then(response => {
+        const request_url = `http://${url}/weather/${location}/${seconds}`
+        axios.get(request_url).then(response => {
 
           console.log("data", this.data);
           this.setState({
