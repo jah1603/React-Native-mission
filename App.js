@@ -651,41 +651,7 @@ else if (date == 23) {
        </View>
      ) : null
    }
-          <View style={{paddingBottom: '10%', paddingLeft: 20, paddingRight: 20}}>
-          <TextInput
-        style={{height: 40, borderColor: 'white', borderWidth: 1, textAlign: 'center', fontWeight: 'normal', fontSize: 19, paddingLeft: 20, paddingRight: 20}}
-        onChangeText={(searchedLocation) => {this.updateLocationState(searchedLocation)}}
-        value={this.state.searchedLocation} placeholder='Where? Place or postcode' placeholderTextColor='white'
-        underlineColorAndroid='transparent'
-      />
-
-          </View>
-
-          <View style={{width: '100%', height: '50%', alignItems: 'center', overflow: 'visible'}}>
-          <CircleSlider style={{position: 'relative', top: '0%'}}
-        arcDirection={'CW'}
-              backgroundColor={"white"}
-              value={0}
-              btnRadius={9.2}
-              btnColor={'#24b599'}
-              sliderRadius={110}
-              sliderWidth={17.5}
-              startDegree={0}
-              maxValue={365}
-              onPressInnerCircle={(value) => console.log(`Inner: ${value}`)}
-              onPressOuterCircle={(value) => console.log(`Outer: ${value}`)}
-              onValueChange={val => this.setState({ dateSelected: val })}
-              onSlidingComplete={val => this.getVal(val)}
-              endGradient={"#A6FFCB"}
-              startGradient={"#12D8FA"}
-              showValue={'true'}
-              textColor={'black'}
-              textSize={20}
-      />
-      <Text style={{fontSize: 25, fontWeight: 'normal', color: "white"}}>
-      {`${this.convertSecondsToCalendarDateForOutputText()}`}
-      </Text>
-      </View>
+          
 
           <View style={styles.buttonContainer}>
           < BarIndicator count={7} size={60} color={'white'} style={{top: '-5%'}}/>
