@@ -384,6 +384,10 @@ else if (date == 23) {
         return "Newcastle ireland"
       }
 
+      if (location === "stonehenge" || location === "Stonehenge" || location === "stone henge"){
+        return "Stonehenge Wiltshire"
+      }
+
       else {
         return location
       }
