@@ -66,7 +66,6 @@ const formStyles = {
   }
 }
 
-
 const options = {
   fields: {
     location: {
@@ -175,9 +174,7 @@ else if (date == 23) {
     return SunCalc.getMoonIllumination(this.moonPhaseDate(this.dateForRequest(this.state.dateSelected))).phase;
   }
 
-
   convertMoonPhaseNumberToName(moonPhaseNumber) {
-
 
   if (moonPhaseNumber <= 0.01 && moonPhaseNumber >= 0){
     var moonPhaseName = 'New moon'
@@ -206,7 +203,6 @@ else if (date == 23) {
   return moonPhaseName;
 };
 
-
   moonPhaseImage(phaseImageName){
 
     switch(phaseImageName) {
@@ -221,7 +217,6 @@ else if (date == 23) {
     case "waning_crescent.jpg": return require("./assets/icons/waning_crescent.jpg");
 
   }
-
   }
 
   convertMoonPhaseNumberToImageName(moonPhaseNumber) {
@@ -575,7 +570,6 @@ else if (date == 23) {
   return time;
   }
 
-
   updateLocationState(searchedLocation){
     this.setState({
       searchedLocation: searchedLocation
@@ -630,8 +624,6 @@ else if (date == 23) {
   render() {
     var self = this;
 
-
-
     if (self.state.loadingInProcess === true){
       return (
 
@@ -651,7 +643,6 @@ else if (date == 23) {
        </View>
      ) : null
    }
-          
 
           <View style={styles.buttonContainer}>
           < BarIndicator count={7} size={60} color={'white'} style={{top: '-5%'}}/>
@@ -884,9 +875,6 @@ else if (date == 23) {
                     borderRadius: 15
                   }}
                 >
-
-
-
 
                   {/* Exit cross element begins here */}
 
