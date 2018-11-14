@@ -25,7 +25,8 @@
       "supportsTablet": true
     },
     "android": {
-     "package": "com.weather2.weather2wed"
+     "package": "com.weather2.weather2wed",
+     "versionCode": 2
    }
   }
 }
