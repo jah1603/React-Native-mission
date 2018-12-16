@@ -1,5 +1,5 @@
-# React-native-mission
-React native mission
+# React-Native-mission
+React Native mission
 
 <b>To run on Android/Apple emulator device:</b>
 
