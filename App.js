@@ -555,7 +555,7 @@ else if (date == 23) {
 
   timeConverterToHours = function (UNIX_timestamp) {
 
-  var a = new Date((UNIX_timestamp + 18000) * 1000);
+  var a = new Date((UNIX_timestamp) * 1000);
 
   console.log("a", a);
 
