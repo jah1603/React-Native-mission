@@ -24,7 +24,7 @@ import {
   UIActivityIndicator,
   WaveIndicator
 } from 'react-native-indicators';
-
+console.disableYellowBox = true
 global.self = global;
 
 // const Weather = require('./models/Weather.js');
@@ -112,10 +112,7 @@ export default class App extends Component {
    hotels: null
  };
 
-  // handleSubmit = () => {
-  //   const value = this._form.getValue();
-  //   console.log('value: ', value);
-  // }
+
 
   async componentDidMount() {
     await Font.loadAsync({

@@ -26,7 +26,8 @@
     },
     "android": {
      "package": "com.weather2.weather2wed",
-     "versionCode": 2
+     "versionCode": 4.0,
+     "permissions": []
    }
   }
 }
